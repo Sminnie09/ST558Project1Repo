@@ -38,7 +38,7 @@ getFranchise <- function(){
 
   get_franchise_json <- fromJSON(get_franchise_text, flatten = TRUE)
 
-  return(data.frame(get_franchise_json[[1]][1], get_franchise_json[[1]][2], get_franchise_json[[1]][2], TeaminNHL =   
+  return(data.frame(get_franchise_json[[1]][1], get_franchise_json[[1]][2], get_franchise_json[[1]][3], TeaminNHL =   
         unname(get_franchise_json[[1]][5])))
 }
 
@@ -66,18 +66,20 @@ getTeamTotals <- function(){
 
 ## Franchise Season Records Data from API
 ```{r FranchiseSeasonRecords, echo = TRUE}
-getSeasonRecords <- function(franchise){
+getSeasonRecords <- function(FranchiseID){
   
  
   base_url <- "https://records.nhl.com/site/api"
-  tab_name <- "franchise-season-records?cayenneExp=franchiseId"
-  full_url <- paste0(base_url, "/", tab_name)
+  tab_name <- "franchise-season-records?cayenneExp=franchiseId="
+  full_url <- paste0(base_url, "/", tab_name, FranchiseID)
 
   get_SeasonRecords <- GET(full_url)
 
   get_SeasonRecords_text <- content(get_SeasonRecords, "text")
 
   get_SeasonRecords_json <- fromJSON(get_SeasonRecords_text, flatten = TRUE)
+ 
+  return(data.frame(get_SeasonRecords_json))
   
 }
 
