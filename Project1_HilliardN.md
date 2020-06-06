@@ -82,3 +82,5 @@ getSeasonRecords <- function(FranchiseID){
   
 }
 ```
+
+## Franchise Goalie Records Data from API
