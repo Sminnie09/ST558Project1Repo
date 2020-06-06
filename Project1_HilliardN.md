@@ -1,19 +1,17 @@
----
-title: "ST558 Project 1"
-author: "Noel Hilliard"
-date: "6/5/2020"
-output:
-  rmarkdown::github_document
----
+ST558 Project 1
+================
+Noel Hilliard
+6/5/2020
 
-Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a
-blog post linking to your vignette.All project work should be done in a github repo. 
-
+Project Objective: This project involves creating a vignette (an HTML
+file with a table of contents) about reading in data in JSON format and
+exploring it (summaries and graphs - more details on this later). You
+will then create a blog post linking to your vignette.All project work
+should be done in a github repo.
 
 # Functions
 
-```{r Install Packages, echo = TRUE, message = FALSE}
-
+``` r
 #install.packages("httr")
 
 require("httr")
@@ -25,7 +23,8 @@ require("jsonlite")
 ```
 
 ## Franchise Data from API
-```{r franchise function, echo = TRUE}
+
+``` r
 getFranchise <- function(){
 
   base_url <- "https://records.nhl.com/site/api"
@@ -41,12 +40,11 @@ getFranchise <- function(){
   return(data.frame(get_franchise_json[[1]][1], get_franchise_json[[1]][2], get_franchise_json[[1]][2], TeaminNHL =   
         unname(get_franchise_json[[1]][5])))
 }
-
 ```
 
-
 ## Franchise Team Totals Data from API
-```{r FranchiseTeamTotals, echo = TRUE}
+
+``` r
 getTeamTotals <- function(){
   
   base_url <- "https://records.nhl.com/site/api"
@@ -65,7 +63,8 @@ getTeamTotals <- function(){
 ```
 
 ## Franchise Season Records Data from API
-```{r FranchiseSeasonRecords, echo = TRUE}
+
+``` r
 getSeasonRecords <- function(franchise){
   
  
@@ -80,6 +79,4 @@ getSeasonRecords <- function(franchise){
   get_SeasonRecords_json <- fromJSON(get_SeasonRecords_text, flatten = TRUE)
   
 }
-
 ```
-
