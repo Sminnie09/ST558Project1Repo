@@ -36,8 +36,7 @@ getFranchise <- function(){
 
   get_franchise_json <- fromJSON(get_franchise_text, flatten = TRUE)
 
-  return(data.frame(get_franchise_json[[1]][1], get_franchise_json[[1]][2], get_franchise_json[[1]][3], TeaminNHL =   
-        unname(get_franchise_json[[1]][5])))
+  return(data.frame(get_franchise_json))
 }
 ```
 
@@ -100,3 +99,5 @@ getGoalieRecords <- function(FranchiseID){
   return(data.frame(get_GoalieRecords_json))
 }
 ```
+
+##
