@@ -55,7 +55,7 @@ getTeamTotals <- function(){
 
   get_TeamTotals_json <- fromJSON(get_TeamTotals_text, flatten = TRUE)
   
-  return(data.frame(get_TeamTotals_json[[1]]))
+  return(data.frame(get_TeamTotals_json))
   
 }
 ```
@@ -118,3 +118,32 @@ getSkaterRecords <- function(FranchiseID){
   return(data.frame(get_SkaterRecords_json))
 }
 ```
+
+# Contingency Tables
+
+## Active and Inactive Players in Goalie Records for Select Franchises
+
+``` r
+library(knitr) #Load knirt r package
+
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25))
+```
+
+    ## No encoding supplied: defaulting to UTF-8.
+    ## No encoding supplied: defaulting to UTF-8.
+    ## No encoding supplied: defaulting to UTF-8.
+    ## No encoding supplied: defaulting to UTF-8.
+
+``` r
+GoalieRecords$data.activePlayer <- factor(GoalieRecords$data.activePlayer)
+GoalieRecords$data.franchiseName <- factor(GoalieRecords$data.franchiseName)
+
+kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer))
+```
+
+|                     | FALSE | TRUE |
+| ------------------- | ----: | ---: |
+| Edmonton Oilers     |    39 |    4 |
+| New York Rangers    |    39 |    3 |
+| Toronto Maple Leafs |    46 |    7 |
+| Vancouver Canucks   |    34 |    5 |

@@ -4,7 +4,6 @@ author: "Noel Hilliard"
 date: "6/5/2020"
 output:
   rmarkdown::github_document
-  toc:true
 ---
 
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a
@@ -58,7 +57,7 @@ getTeamTotals <- function(){
 
   get_TeamTotals_json <- fromJSON(get_TeamTotals_text, flatten = TRUE)
   
-  return(data.frame(get_TeamTotals_json[[1]]))
+  return(data.frame(get_TeamTotals_json))
   
 }
 ```
@@ -124,5 +123,19 @@ getSkaterRecords <- function(FranchiseID){
 
 ```
 
+# Contingency Tables 
+
+## Active and Inactive Players in Goalie Records for Select Franchises
+
+```{r assign variables, echo = TRUE}
+library(knitr) #Load knirt r package
+
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25))
+
+GoalieRecords$data.activePlayer <- factor(GoalieRecords$data.activePlayer)
+GoalieRecords$data.franchiseName <- factor(GoalieRecords$data.franchiseName)
+
+kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer))
+```
 
 
