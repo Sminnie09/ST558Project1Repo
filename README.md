@@ -14,12 +14,11 @@ should be done in a github repo.
 ``` r
 #install.packages("httr")
 
-require("httr")
+library("httr")
 
 #install.packages("jsonlite")
 
-#Require the package so you can use it
-require("jsonlite")
+library("jsonlite")
 ```
 
 ## Franchise Data from API
@@ -84,3 +83,20 @@ getSeasonRecords <- function(FranchiseID){
 ```
 
 ## Franchise Goalie Records Data from API
+
+``` r
+getGoalieRecords <- function(FranchiseID){
+  
+  base_url <- "https://records.nhl.com/site/api"
+  tab_name <- "franchise-goalie-records?cayenneExp=franchiseId="
+  full_url <- paste0(base_url, "/", tab_name, FranchiseID)
+
+  get_GoalieRecords <- GET(full_url)
+
+  get_GoalieRecords_text <- content(get_GoalieRecords, "text")
+
+  get_GoalieRecords_json <- fromJSON(get_GoalieRecords_text, flatten = TRUE) 
+  
+  return(get_GoalieRecords_json)
+}
+```
