@@ -147,3 +147,27 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 | New York Rangers    |              39 |             3 |
 | Toronto Maple Leafs |              46 |             7 |
 | Vancouver Canucks   |              34 |             5 |
+
+## Positions in Skater Records for Select Franchises
+
+``` r
+#Create dataframe of goalie records for select franchises
+SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),
+                       getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
+
+#factor columns of interest
+SkaterRecords$data.franchiseName <- factor(SkaterRecords$data.franchiseName)
+SkaterRecords$data.positionCode <- factor(SkaterRecords$data.positionCode)
+
+#create table
+kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
+```
+
+|                     |   C |   D |   L |   R |
+| ------------------- | --: | --: | --: | --: |
+| Dallas Stars        | 152 | 204 | 134 | 125 |
+| Edmonton Oilers     | 127 | 183 | 114 |  85 |
+| New York Islanders  | 135 | 178 | 108 |  88 |
+| New York Rangers    | 228 | 308 | 230 | 217 |
+| Toronto Maple Leafs | 237 | 289 | 198 | 177 |
+| Vancouver Canucks   | 146 | 197 | 106 | 112 |
