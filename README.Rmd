@@ -103,7 +103,7 @@ getGoalieRecords <- function(FranchiseID){
 
 ```
 
-## Franchise Sakter Records Data from API
+## Franchise Skater Records Data from API
 
 ```{r SkaterRecords, echo = TRUE}
 getSkaterRecords <- function(FranchiseID){
@@ -127,15 +127,20 @@ getSkaterRecords <- function(FranchiseID){
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
-```{r assign variables, echo = TRUE}
+```{r assign variables, echo = TRUE, message = FALSE}
 library(knitr) #Load knirt r package
 
-GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25))
+#Create dataframe of goalie records for select franchises
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), 
+                       getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
+#factor columns of interest
 GoalieRecords$data.activePlayer <- factor(GoalieRecords$data.activePlayer)
 GoalieRecords$data.franchiseName <- factor(GoalieRecords$data.franchiseName)
 
-kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer))
+#create table
+kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer), 
+      col.names = c("Inactive Player", "Active Player"))
 ```
 
 

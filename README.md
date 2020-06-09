@@ -100,7 +100,7 @@ getGoalieRecords <- function(FranchiseID){
 }
 ```
 
-## Franchise Sakter Records Data from API
+## Franchise Skater Records Data from API
 
 ``` r
 getSkaterRecords <- function(FranchiseID){
@@ -126,24 +126,24 @@ getSkaterRecords <- function(FranchiseID){
 ``` r
 library(knitr) #Load knirt r package
 
-GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25))
-```
+#Create dataframe of goalie records for select franchises
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), 
+                       getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
-    ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
-
-``` r
+#factor columns of interest
 GoalieRecords$data.activePlayer <- factor(GoalieRecords$data.activePlayer)
 GoalieRecords$data.franchiseName <- factor(GoalieRecords$data.franchiseName)
 
-kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer))
+#create table
+kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer), 
+      col.names = c("Inactive Player", "Active Player"))
 ```
 
-|                     | FALSE | TRUE |
-| ------------------- | ----: | ---: |
-| Edmonton Oilers     |    39 |    4 |
-| New York Rangers    |    39 |    3 |
-| Toronto Maple Leafs |    46 |    7 |
-| Vancouver Canucks   |    34 |    5 |
+|                     | Inactive Player | Active Player |
+| ------------------- | --------------: | ------------: |
+| Dallas Stars        |              34 |             3 |
+| Edmonton Oilers     |              39 |             4 |
+| New York Islanders  |              26 |             4 |
+| New York Rangers    |              39 |             3 |
+| Toronto Maple Leafs |              46 |             7 |
+| Vancouver Canucks   |              34 |             5 |
