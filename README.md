@@ -171,3 +171,53 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 | New York Rangers    | 228 | 308 | 230 | 217 |
 | Toronto Maple Leafs | 237 | 289 | 198 | 177 |
 | Vancouver Canucks   | 146 | 197 | 106 | 112 |
+
+# Numeric Summaries
+
+## Numeric Summary of Select Columns from Skater Records
+
+``` r
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+TeamTotalsTable <- function(position){
+  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.gamesPlayed, data.goals)
+  kable(apply(data, 2, summary))
+}
+
+TeamTotalsTable("L")
+```
+
+|         | data.gamesPlayed | data.goals |
+| ------- | ---------------: | ---------: |
+| Min.    |           1.0000 |    0.00000 |
+| 1st Qu. |          13.0000 |    1.00000 |
+| Median  |          54.0000 |    6.00000 |
+| Mean    |         111.9966 |   24.93596 |
+| 3rd Qu. |         138.7500 |   24.00000 |
+| Max.    |        1306.0000 |  393.00000 |
+
+``` r
+TeamTotalsTable("C")
+```
+
+|         | data.gamesPlayed | data.goals |
+| ------- | ---------------: | ---------: |
+| Min.    |           1.0000 |    0.00000 |
+| 1st Qu. |          13.0000 |    1.00000 |
+| Median  |          53.0000 |    6.00000 |
+| Mean    |         117.6634 |   27.80683 |
+| 3rd Qu. |         144.0000 |   26.00000 |
+| Max.    |        1459.0000 |  583.00000 |

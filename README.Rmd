@@ -158,8 +158,22 @@ SkaterRecords$data.positionCode <- factor(SkaterRecords$data.positionCode)
 #create table
 kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 
-
 ```
 
+# Numeric Summaries
+
+## Numeric Summary of Select Columns from Skater Records
+
+```{r stat sum skater records, echo = TRUE}
+library(dplyr)
+
+TeamTotalsTable <- function(position){
+  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.gamesPlayed, data.goals)
+  kable(apply(data, 2, summary))
+}
+
+TeamTotalsTable("L")
+TeamTotalsTable("C")
+```
 
 
