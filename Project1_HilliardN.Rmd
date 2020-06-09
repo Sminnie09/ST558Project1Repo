@@ -100,7 +100,7 @@ getGoalieRecords <- function(FranchiseID){
 
   get_GoalieRecords_json <- fromJSON(get_GoalieRecords_text, flatten = TRUE) 
   
-  return(get_GoalieRecords_json)
+  return(data.frame(get_GoalieRecords_json))
 }
 
 ```
