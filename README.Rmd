@@ -4,6 +4,7 @@ author: "Noel Hilliard"
 date: "6/5/2020"
 output:
   rmarkdown::github_document
+  toc:true
 ---
 
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a
@@ -85,7 +86,6 @@ getSeasonRecords <- function(FranchiseID){
 
 ## Franchise Goalie Records Data from API
 
-
 ```{r GoalieRecords, echo = TRUE}
 getGoalieRecords <- function(FranchiseID){
   
@@ -104,6 +104,25 @@ getGoalieRecords <- function(FranchiseID){
 
 ```
 
-##
+## Franchise Sakter Records Data from API
+
+```{r SkaterRecords, echo = TRUE}
+getSkaterRecords <- function(FranchiseID){
+  
+  base_url <- "https://records.nhl.com/site/api"
+  tab_name <- "franchise-skater-records?cayenneExp=franchiseId="
+  full_url <- paste0(base_url, "/", tab_name, FranchiseID)
+
+  get_SkaterRecords <- GET(full_url)
+
+  get_SkaterRecords_text <- content(get_SkaterRecords, "text")
+
+  get_SkaterRecords_json <- fromJSON(get_SkaterRecords_text, flatten = TRUE) 
+  
+  return(data.frame(get_SkaterRecords_json))
+}
+
+```
+
 
 

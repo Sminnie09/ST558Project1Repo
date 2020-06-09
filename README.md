@@ -100,4 +100,21 @@ getGoalieRecords <- function(FranchiseID){
 }
 ```
 
-##
+## Franchise Sakter Records Data from API
+
+``` r
+getSkaterRecords <- function(FranchiseID){
+  
+  base_url <- "https://records.nhl.com/site/api"
+  tab_name <- "franchise-skater-records?cayenneExp=franchiseId="
+  full_url <- paste0(base_url, "/", tab_name, FranchiseID)
+
+  get_SkaterRecords <- GET(full_url)
+
+  get_SkaterRecords_text <- content(get_SkaterRecords, "text")
+
+  get_SkaterRecords_json <- fromJSON(get_SkaterRecords_text, flatten = TRUE) 
+  
+  return(data.frame(get_SkaterRecords_json))
+}
+```
