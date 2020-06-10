@@ -164,16 +164,35 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 
 ## Numeric Summary of Select Columns from Skater Records
 
-```{r stat sum skater records, echo = TRUE}
+```{r stat sum skater records function, echo = TRUE}
 library(dplyr)
 
-TeamTotalsTable <- function(position){
-  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.gamesPlayed, data.goals)
+SkatersTable <- function(position){
+  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
   kable(apply(data, 2, summary))
 }
 
-TeamTotalsTable("L")
-TeamTotalsTable("C")
 ```
 
+```{r position numeric summary L, echo = TRUE}
+SkatersTable("L")
+```
+
+```{r position numeric summary C, echo = TRUE}
+SkatersTable("C")
+```
+
+```{r position numeric summary D, echo = TRUE}
+SkatersTable("D")
+```
+
+```{r position numeric summary R, echo = TRUE}
+SkatersTable("R")
+```
+
+## Barplot
+
+```{r Team Totals bar plot, echo = TRUE}
+
+```
 
