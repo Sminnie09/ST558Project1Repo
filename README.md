@@ -127,8 +127,7 @@ getSkaterRecords <- function(FranchiseID){
 library(knitr) #Load knirt r package
 
 #Create dataframe of goalie records for select franchises
-GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), 
-                       getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
 #factor columns of interest
 GoalieRecords$data.activePlayer <- factor(GoalieRecords$data.activePlayer)
@@ -256,8 +255,23 @@ library(ggplot2)
 
 SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
 
+SkaterRecords$data.activePlayer <- factor(SkaterRecords$data.activePlayer)
+player_new <- c("Inactive Player", "Active Player")
+levels(SkaterRecords$data.activePlayer) <- player_new
+
 g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
 g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
 
-![](README_files/figure-gfm/Team%20Totals%20bar%20plot-1.png)<!-- -->
+![](README_files/figure-gfm/Skater%20bar%20plot-1.png)<!-- -->
+
+## Boxplot
+
+``` r
+GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
+
+g <- ggplot(GoalieRecords, aes(x = data.franchiseName, y = data.losses))
+g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses")
+```
+
+![](README_files/figure-gfm/losses%20boxplot-1.png)<!-- -->
