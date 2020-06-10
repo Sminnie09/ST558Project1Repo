@@ -152,8 +152,7 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 
 ``` r
 #Create dataframe of goalie records for select franchises
-SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),
-                       getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
+SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
 
 #factor columns of interest
 SkaterRecords$data.franchiseName <- factor(SkaterRecords$data.franchiseName)
@@ -251,3 +250,14 @@ SkatersTable("R")
 | Max.    |    615.00000 |        1188.0000 |  573.00000 |  1126.00000 |    21.000000 |
 
 ## Barplot
+
+``` r
+library(ggplot2)
+
+SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
+
+g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
+g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
+```
+
+![](README_files/figure-gfm/Team%20Totals%20bar%20plot-1.png)<!-- -->

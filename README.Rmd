@@ -148,8 +148,7 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 ```{r position by franchise, echo TRUE, message = FALSE}
 
 #Create dataframe of goalie records for select franchises
-SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),
-                       getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
+SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
 
 #factor columns of interest
 SkaterRecords$data.franchiseName <- factor(SkaterRecords$data.franchiseName)
@@ -192,7 +191,12 @@ SkatersTable("R")
 
 ## Barplot
 
-```{r Team Totals bar plot, echo = TRUE}
+```{r Team Totals bar plot, echo = TRUE, message = FALSE}
+library(ggplot2)
 
+SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
+
+g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
+g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
 
