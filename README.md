@@ -191,7 +191,7 @@ library(dplyr)
 
 ``` r
 SkatersTable <- function(position){
-  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
+  data <- getSkaterRecords(5) %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
   kable(apply(data, 2, summary))
 }
 ```
@@ -200,65 +200,76 @@ SkatersTable <- function(position){
 SkatersTable("L")
 ```
 
+    ## No encoding supplied: defaulting to UTF-8.
+
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
-| Min.    |         0.00 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |         1.00 |          13.0000 |    1.00000 |     2.00000 |     1.000000 |
-| Median  |         7.00 |          54.0000 |    6.00000 |    13.00000 |     2.000000 |
-| Mean    |        30.00 |         111.9966 |   24.93596 |    54.93596 |     2.679775 |
-| 3rd Qu. |        31.75 |         138.7500 |   24.00000 |    56.00000 |     3.000000 |
-| Max.    |       648.00 |        1306.0000 |  393.00000 |  1041.00000 |    17.000000 |
+| Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
+| 1st Qu. |      1.00000 |          10.2500 |    0.00000 |     1.25000 |     1.000000 |
+| Median  |      7.00000 |          54.0000 |    7.00000 |    14.00000 |     2.000000 |
+| Mean    |     30.75253 |         116.6263 |   27.56566 |    58.31818 |     2.893939 |
+| 3rd Qu. |     37.00000 |         164.0000 |   29.00000 |    66.25000 |     4.000000 |
+| Max.    |    312.00000 |         947.0000 |  296.00000 |   597.00000 |    14.000000 |
 
 ``` r
 SkatersTable("C")
 ```
 
+    ## No encoding supplied: defaulting to UTF-8.
+
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
 | Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          13.0000 |    1.00000 |     2.00000 |     1.000000 |
-| Median  |      9.00000 |          53.0000 |    6.00000 |    15.00000 |     2.000000 |
-| Mean    |     42.65659 |         117.6634 |   27.80683 |    70.46341 |     2.690732 |
-| 3rd Qu. |     38.00000 |         144.0000 |   26.00000 |    63.00000 |     3.000000 |
-| Max.    |   1086.00000 |        1459.0000 |  583.00000 |  1669.00000 |    20.000000 |
+| 1st Qu. |      1.00000 |          15.0000 |    1.00000 |     2.00000 |     1.000000 |
+| Median  |      9.00000 |          52.0000 |    7.00000 |    15.00000 |     2.000000 |
+| Mean    |     39.81435 |         114.0295 |   28.03797 |    67.85232 |     2.860759 |
+| 3rd Qu. |     38.00000 |         145.0000 |   26.00000 |    61.00000 |     3.000000 |
+| Max.    |    567.00000 |        1062.0000 |  420.00000 |   987.00000 |    15.000000 |
 
 ``` r
 SkatersTable("D")
 ```
 
+    ## No encoding supplied: defaulting to UTF-8.
+
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
 | Min.    |      0.00000 |           1.0000 |   0.000000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          13.5000 |   0.000000 |     2.00000 |     1.000000 |
-| Median  |      7.00000 |          52.0000 |   2.000000 |     9.00000 |     2.000000 |
-| Mean    |     29.95659 |         117.5055 |   8.980132 |    38.93672 |     2.761589 |
-| 3rd Qu. |     30.00000 |         147.0000 |   8.000000 |    39.00000 |     3.000000 |
-| Max.    |    742.00000 |        1184.0000 | 310.000000 |  1052.00000 |    20.000000 |
+| 1st Qu. |      1.00000 |          15.0000 |   0.000000 |     2.00000 |     1.000000 |
+| Median  |      8.00000 |          58.0000 |   3.000000 |    11.00000 |     2.000000 |
+| Mean    |     31.94118 |         122.3322 |   9.681661 |    41.62284 |     2.948097 |
+| 3rd Qu. |     31.00000 |         151.0000 |   9.000000 |    41.00000 |     4.000000 |
+| Max.    |    620.00000 |        1184.0000 | 148.000000 |   768.00000 |    20.000000 |
 
 ``` r
 SkatersTable("R")
 ```
 
+    ## No encoding supplied: defaulting to UTF-8.
+
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
 | Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          12.0000 |    1.00000 |     2.00000 |     1.000000 |
-| Median  |      9.00000 |          53.0000 |    7.00000 |    16.00000 |     2.000000 |
-| Mean    |     36.95771 |         122.6978 |   30.17662 |    67.13433 |     2.814677 |
-| 3rd Qu. |     37.25000 |         164.5000 |   32.25000 |    71.00000 |     3.000000 |
-| Max.    |    615.00000 |        1188.0000 |  573.00000 |  1126.00000 |    21.000000 |
+| 1st Qu. |      2.00000 |          17.0000 |    1.00000 |     3.00000 |     1.000000 |
+| Median  |     11.00000 |          70.0000 |    9.00000 |    23.00000 |     2.000000 |
+| Mean    |     37.24294 |         127.0621 |   32.37288 |    69.61582 |     3.056497 |
+| 3rd Qu. |     42.00000 |         172.0000 |   36.00000 |    82.00000 |     4.000000 |
+| Max.    |    417.00000 |        1188.0000 |  332.00000 |   713.00000 |    21.000000 |
 
 ## Barplot
 
 ``` r
-library(ggplot2)
+library(ggplot2) #load ggplot for plots
 
+#dataframe of subset of skater records 
 SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
 
+#rename factor levels
 SkaterRecords$data.activePlayer <- factor(SkaterRecords$data.activePlayer)
 player_new <- c("Inactive Player", "Active Player")
 levels(SkaterRecords$data.activePlayer) <- player_new
 
+#
 g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
 g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
@@ -268,10 +279,23 @@ g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Fran
 ## Boxplot
 
 ``` r
+#create dataframe of select franchises from goalie records
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
+#create barplot
 g <- ggplot(GoalieRecords, aes(x = data.franchiseName, y = data.losses))
 g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses")
 ```
 
 ![](README_files/figure-gfm/losses%20boxplot-1.png)<!-- -->
+
+## Scatter Plot
+
+``` r
+SkaterRecords <- rbind(getSkaterRecords(23), getSkaterRecords(16), getSkaterRecords(3), getSkaterRecords(6))
+
+g <- ggplot(SkaterRecords, aes(x = data.gamesPlayed, y = data.mostGoalsOneSeason))
+g + geom_point(aes(color = data.franchiseName)) + labs(x = "Games Played", y = "Most Goals in One Season", color = "Franchise Name")
+```
+
+![](README_files/figure-gfm/scatter%20plot-1.png)<!-- -->

@@ -166,7 +166,7 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 library(dplyr)
 
 SkatersTable <- function(position){
-  data <- SkaterRecords %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
+  data <- getSkaterRecords(5) %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
   kable(apply(data, 2, summary))
 }
 
@@ -191,14 +191,17 @@ SkatersTable("R")
 ## Barplot
 
 ```{r Skater bar plot, echo = TRUE, message = FALSE}
-library(ggplot2)
+library(ggplot2) #load ggplot for plots
 
+#dataframe of subset of skater records 
 SkaterRecords <- rbind(getSkaterRecords(5), getSkaterRecords(10), getSkaterRecords(20),getSkaterRecords(25), getSkaterRecords(15), getSkaterRecords(22))
 
+#rename factor levels
 SkaterRecords$data.activePlayer <- factor(SkaterRecords$data.activePlayer)
 player_new <- c("Inactive Player", "Active Player")
 levels(SkaterRecords$data.activePlayer) <- player_new
 
+#
 g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
 g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
@@ -207,11 +210,24 @@ g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Fran
 
 ```{r losses boxplot, echo = TRUE, message = FALSE}
 
+#create dataframe of select franchises from goalie records
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
+#create barplot
 g <- ggplot(GoalieRecords, aes(x = data.franchiseName, y = data.losses))
 g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses")
 
+
+```
+
+## Scatter Plot
+
+```{r scatter plot, echo = TRUE, message = FALSE}
+
+SkaterRecords <- rbind(getSkaterRecords(23), getSkaterRecords(16), getSkaterRecords(3), getSkaterRecords(6))
+
+g <- ggplot(SkaterRecords, aes(x = data.gamesPlayed, y = data.mostGoalsOneSeason))
+g + geom_point(aes(color = data.franchiseName)) + labs(x = "Games Played", y = "Most Goals in One Season", color = "Franchise Name")
 
 ```
 
