@@ -9,9 +9,16 @@ exploring it (summaries and graphs - more details on this later). You
 will then create a blog post linking to your vignette.All project work
 should be done in a github repo.
 
-**Table of Contents**
+{:toc}
+
+# **Table of Contents**
 
   - [JSON Data](#markdown-header-JSON-Data)
+      - [What is it?](#markdown-header-What-is-it?)
+      - [Where does it get
+        used?](#markdown-header-Where-does-it-get-used?)
+      - \[Why is it a good way to store\]
+        data?(\#markdown-header-Why-is-it-a-good-way-to-store-data?)
   - [Functions](#markdown-header-Functions)
 
 # JSON Data
