@@ -19,20 +19,34 @@ should be done in a github repo.
 ## What is it?
 
 JavaScript Object Notation (JSON) data is a lightweight data-interchange
-format.According to [JSON.org](https://www.json.org/json-en.html), JSON
-data has two data structures that are recognized by all programming
-languages: (1) A collection of name/value pairs (2) An ordered list of
-values. The first data structure is recognized as “an object, record,
-struct, dictionary, hash table, keyed list, or associative array.” The
-second data structure is recognized as “an array, vector list, or
-sequence.” JSON data is a text format that does not depend on language
-so it is compatible with several languages including C, C++, C\#, Java,
-JavaScript, Perl, and
+format used to store data. According to
+[JSON.org](https://www.json.org/json-en.html), JSON data has two data
+structures that are recognized by all programming languages: (1) A
+collection of name/value pairs (2) An ordered list of values. The first
+data structure is recognized as “an object, record, struct, dictionary,
+hash table, keyed list, or associative array.” The second data structure
+is recognized as “an array, vector list, or sequence.” JSON data is a
+text format that does not depend on language so it is compatible with
+several languages including C, C++, C\#, Java, JavaScript, Perl, and
 Python.[(JSON.org)](https://www.json.org/json-en.html)
 
 ## Where does it get used?
 
+JSON data is used for a variety of applications. JSON data format can be
+used for browser extensions and websites that are written in JavaScript.
+It can be used as an alternate data format for XML to transmit data
+between the client and server in web applications. Other web
+applications include the use of JSON data in programming of Web Services
+and APIs to provide access to public data. Lastly, JSON data is used for
+serialization and transmission of the structured data over the
+network.(<https://blog.eduonix.com/web-programming-tutorials/learn-use-json/>)
+
 ## Why is it a good way to store data?
+
+JSON data is a good way to store data because it is a text only format.
+The format can be conveniently transferred with servers and JSON is a
+data format that can be used by any programming language.
+(<https://www.w3schools.com/js/js_json_intro.asp>)
 
 # Functions
 
@@ -201,20 +215,7 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 
 ``` r
 library(dplyr)
-```
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 SkatersTable <- function(position){
   data <- getSkaterRecords(5) %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
   kable(apply(data, 2, summary))
