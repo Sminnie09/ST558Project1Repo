@@ -3,20 +3,11 @@ title: "ST558 Project 1"
 author: "Noel Hilliard"
 date: "6/5/2020"
 output:
-  rmarkdown::github_document
+  rmarkdown::github_document:
+    toc: true
 ---
 
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a blog post linking to your vignette.All project work should be done in a github repo. 
-
-{:toc}
-
-# **Table of Contents**
-
-* [JSON Data](#markdown-header-JSON-Data)
-    * [What is it?](#markdown-header-What-is-it?)
-    * [Where does it get used?](#markdown-header-Where-does-it-get-used?)
-    * [Why is it a good way to store] data?(#markdown-header-Why-is-it-a-good-way-to-store-data?)
-* [Functions](#markdown-header-Functions)
 
 # JSON Data
 
@@ -215,6 +206,8 @@ SkatersTable("D")
 ```{r position numeric summary R, echo = TRUE, message = FALSE}
 SkatersTable("R")
 ```
+
+# Plots
 
 ## Barplot
 

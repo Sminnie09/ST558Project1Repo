@@ -3,23 +3,40 @@ ST558 Project 1
 Noel Hilliard
 6/5/2020
 
+  - [JSON Data](#json-data)
+      - [What is it?](#what-is-it)
+      - [Where does it get used?](#where-does-it-get-used)
+      - [Why is it a good way to store
+        data?](#why-is-it-a-good-way-to-store-data)
+  - [JSON Packages in R](#json-packages-in-r)
+  - [Functions](#functions)
+      - [Franchise Data from API](#franchise-data-from-api)
+      - [Franchise Team Totals Data from
+        API](#franchise-team-totals-data-from-api)
+      - [Franchise Season Records Data from
+        API](#franchise-season-records-data-from-api)
+      - [Franchise Goalie Records Data from
+        API](#franchise-goalie-records-data-from-api)
+      - [Franchise Skater Records Data from
+        API](#franchise-skater-records-data-from-api)
+  - [Contingency Tables](#contingency-tables)
+      - [Active and Inactive Players in Goalie Records for Select
+        Franchises](#active-and-inactive-players-in-goalie-records-for-select-franchises)
+  - [Numeric Summaries](#numeric-summaries)
+      - [Positions in Skater Records for Select
+        Franchises](#positions-in-skater-records-for-select-franchises)
+      - [Numeric Summary of Select Columns from Skater
+        Records](#numeric-summary-of-select-columns-from-skater-records)
+  - [Plots](#plots)
+      - [Barplot](#barplot)
+      - [Boxplot](#boxplot)
+      - [Scatter Plot](#scatter-plot)
+
 Project Objective: This project involves creating a vignette (an HTML
 file with a table of contents) about reading in data in JSON format and
 exploring it (summaries and graphs - more details on this later). You
 will then create a blog post linking to your vignette.All project work
 should be done in a github repo.
-
-{:toc}
-
-# **Table of Contents**
-
-  - [JSON Data](#markdown-header-JSON-Data)
-      - [What is it?](#markdown-header-What-is-it?)
-      - [Where does it get
-        used?](#markdown-header-Where-does-it-get-used?)
-      - \[Why is it a good way to store\]
-        data?(\#markdown-header-Why-is-it-a-good-way-to-store-data?)
-  - [Functions](#markdown-header-Functions)
 
 # JSON Data
 
@@ -207,6 +224,8 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 | Toronto Maple Leafs |              46 |             7 |
 | Vancouver Canucks   |              34 |             5 |
 
+# Numeric Summaries
+
 ## Positions in Skater Records for Select Franchises
 
 ``` r
@@ -229,8 +248,6 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 | New York Rangers    | 228 | 308 | 230 | 217 |
 | Toronto Maple Leafs | 237 | 289 | 198 | 177 |
 | Vancouver Canucks   | 146 | 197 | 106 | 112 |
-
-# Numeric Summaries
 
 ## Numeric Summary of Select Columns from Skater Records
 
@@ -294,6 +311,8 @@ SkatersTable("R")
 | Mean    |     37.24294 |         127.0621 |   32.37288 |    69.61582 |     3.056497 |
 | 3rd Qu. |     42.00000 |         172.0000 |   36.00000 |    82.00000 |     4.000000 |
 | Max.    |    417.00000 |        1188.0000 |  332.00000 |   713.00000 |    21.000000 |
+
+# Plots
 
 ## Barplot
 
