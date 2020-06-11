@@ -17,7 +17,7 @@ Project Objective: This project involves creating a vignette (an HTML file with 
 
 ## What is it?
 
-JavaScript Object Notation (JSON) data is a lightweight data-interchange format used to store data. According to [JSON.org](https://www.json.org/json-en.html), JSON data has two data structures that are recognized by all programming languages: (1) A collection of name/value pairs (2) An ordered list of values. The first data structure is recognized as "an object, record, struct, dictionary, hash table, keyed list, or associative array." The second data structure is recognized as "an array, vector list, or sequence." JSON data is a text format that does not depend on language so it is compatible with several languages including C, C++, C#, Java, JavaScript, Perl, and Python.[(JSON.org)](https://www.json.org/json-en.html)
+JavaScript Object Notation (JSON) data is a lightweight data-interchange format used to store data. According to [JSON.org](https://www.json.org/json-en.html), JSON data has two data structures that are recognized by all programming languages: (1) A collection of name/value pairs (2) An ordered list of values. The first data structure is recognized as "an object, record, struct, dictionary, hash table, keyed list, or associative array." The second data structure is recognized as "an array, vector list, or sequence." There are seven value types: string, number, object, array, true, false, and null (https://javaee.github.io/tutorial/jsonp001.html) JSON data is a text format that does not depend on language so it is compatible with several languages including C, C++, C#, Java, JavaScript, Perl, and Python.[(JSON.org)](https://www.json.org/json-en.html)
 
 ## Where does it get used?
 
@@ -27,6 +27,10 @@ JSON data is used for a variety of applications. JSON data format can be used fo
 ## Why is it a good way to store data?
 
 JSON data is a good way to store data because it is a text only format. The format can be conveniently transferred with servers and JSON is a data format that can be used by any programming language. (https://www.w3schools.com/js/js_json_intro.asp)
+
+# JSON Packages in R
+
+The three major packages to read JSON data into R are `rJSON`, `RJSONIO`, and `RJSONlite`. All three packages have two identical functions to convert between JSON data and `R` objects: `toJSON` and `fromJSON`. In addtion to these functions, `rJSON` has a function called `newJSONParser` to convert JSON objects into R objects. `RJSONIO` has an additional function called `asJSVars` to serialize R objects. The last package, `RJSONlite` is the one I chose to use for this vignette because it can interact with APIs, building pipelines, and streaming data. (http://anotherpeak.org/blog/tech/2016/03/10/understand_json_3.html)
 
 
 # Functions
