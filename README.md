@@ -9,6 +9,14 @@ exploring it (summaries and graphs - more details on this later). You
 will then create a blog post linking to your vignette.All project work
 should be done in a github repo.
 
+Table of Contents
+
+  - [JSON Data](#markdown-header-JSON-Data)
+
+  - [Functions](#markdown-header-Functions)
+
+# JSON Data
+
 # Functions
 
 ``` r
@@ -200,8 +208,6 @@ SkatersTable <- function(position){
 SkatersTable("L")
 ```
 
-    ## No encoding supplied: defaulting to UTF-8.
-
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
 | Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
@@ -214,8 +220,6 @@ SkatersTable("L")
 ``` r
 SkatersTable("C")
 ```
-
-    ## No encoding supplied: defaulting to UTF-8.
 
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
@@ -230,8 +234,6 @@ SkatersTable("C")
 SkatersTable("D")
 ```
 
-    ## No encoding supplied: defaulting to UTF-8.
-
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
 | Min.    |      0.00000 |           1.0000 |   0.000000 |     0.00000 |     1.000000 |
@@ -244,8 +246,6 @@ SkatersTable("D")
 ``` r
 SkatersTable("R")
 ```
-
-    ## No encoding supplied: defaulting to UTF-8.
 
 |         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
 | ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |

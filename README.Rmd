@@ -9,6 +9,13 @@ output:
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a
 blog post linking to your vignette.All project work should be done in a github repo. 
 
+Table of Contents
+
+* [JSON Data](#markdown-header-JSON-Data)
+
+* [Functions](#markdown-header-Functions)
+
+# JSON Data
 
 # Functions
 
@@ -172,19 +179,19 @@ SkatersTable <- function(position){
 
 ```
 
-```{r position numeric summary L, echo = TRUE}
+```{r position numeric summary L, echo = TRUE, message = FALSE}
 SkatersTable("L")
 ```
 
-```{r position numeric summary C, echo = TRUE}
+```{r position numeric summary C, echo = TRUE, message = FALSE}
 SkatersTable("C")
 ```
 
-```{r position numeric summary D, echo = TRUE}
+```{r position numeric summary D, echo = TRUE, message = FALSE}
 SkatersTable("D")
 ```
 
-```{r position numeric summary R, echo = TRUE}
+```{r position numeric summary R, echo = TRUE, message = FALSE}
 SkatersTable("R")
 ```
 
