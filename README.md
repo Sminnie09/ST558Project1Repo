@@ -9,13 +9,30 @@ exploring it (summaries and graphs - more details on this later). You
 will then create a blog post linking to your vignette.All project work
 should be done in a github repo.
 
-Table of Contents
+**Table of Contents**
 
   - [JSON Data](#markdown-header-JSON-Data)
-
   - [Functions](#markdown-header-Functions)
 
 # JSON Data
+
+## What is it?
+
+JavaScript Object Notation (JSON) data is a lightweight data-interchange
+format.According to [JSON.org](https://www.json.org/json-en.html), JSON
+data has two data structures that are recognized by all programming
+languages: (1) A collection of name/value pairs (2) An ordered list of
+values. The first data structure is recognized as “an object, record,
+struct, dictionary, hash table, keyed list, or associative array.” The
+second data structure is recognized as “an array, vector list, or
+sequence.” JSON data is a text format that does not depend on language
+so it is compatible with several languages including C, C++, C\#, Java,
+JavaScript, Perl, and
+Python.[(JSON.org)](https://www.json.org/json-en.html)
+
+## Where does it get used?
+
+## Why is it a good way to store data?
 
 # Functions
 
