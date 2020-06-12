@@ -364,7 +364,7 @@ frequency of categorical variables.
 
 Below, the goalie records of select franchises are binded together into
 1 dataframe and the 2 categorical variables of interest are:
-`ActivePlayer` and `franchiseName`. Based on the contingincy table, all
+`ActivePlayer` and `franchiseName`. Based on the contingency table, all
 of the selected franchises have more inactive players than active
 players.
 
@@ -395,7 +395,11 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 
 The dataframe for this contingency table was created in a similar way to
 the table above by binding together the skater records of select
-franchises and factor
+franchises and factoring the `franchiseName` and `positionCode`. Based
+on the contingency table of select franchises, the Toronto Maple Leafs
+have the most C position players, New York Rangers have the most D, L,
+and R position players. It also shows that the New York Rangers and
+Edmonton Oilers have significantly less R position players.
 
 ``` r
 #Create dataframe of goalie records for select franchises
@@ -420,70 +424,101 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 
 # Numeric Summaries
 
+Numeric summaries are used to summarize quantitative data. The numeric
+summaries below include minimum, 1st quartile, median, mean, 3rd
+quartile, and maximum.
+
 ## Numeric Summary of Select Columns from Skater Records
+
+To create the numeric summaries a function is used to filter the skater
+records for the position of interest for a specific franchise. The
+columns of interest are: `data.gamesPlayed`, `data.goals`, and
+`data.seasons`. A numeric summary is created for each column of data.
 
 ``` r
 library(dplyr)
 
 SkatersTable <- function(position){
-  data <- getSkaterRecords(5) %>% filter(data.positionCode == position) %>% select(data.assists,data.gamesPlayed, data.goals, data.points, data.seasons)
-  kable(apply(data, 2, summary))
+  data <- getSkaterRecords(5) %>% filter(data.positionCode == position) %>% select(data.gamesPlayed, data.goals, data.seasons)
+  kable(apply(data, 2, summary), col.names = c("gamesPlayed", "Goals", "Seasons"))
 }
 ```
+
+Here, the L position was entered into the function for the Toronto Maple
+Leafs. Some things to point out are the maximum number of goals in this
+position for this franchise is 296, on average each player played 116
+games, and 2 was the median number of seasons.
 
 ``` r
 SkatersTable("L")
 ```
 
-|         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
-| ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
-| Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          10.2500 |    0.00000 |     1.25000 |     1.000000 |
-| Median  |      7.00000 |          54.0000 |    7.00000 |    14.00000 |     2.000000 |
-| Mean    |     30.75253 |         116.6263 |   27.56566 |    58.31818 |     2.893939 |
-| 3rd Qu. |     37.00000 |         164.0000 |   29.00000 |    66.25000 |     4.000000 |
-| Max.    |    312.00000 |         947.0000 |  296.00000 |   597.00000 |    14.000000 |
+|         | gamesPlayed |     Goals |   Seasons |
+| ------- | ----------: | --------: | --------: |
+| Min.    |      1.0000 |   0.00000 |  1.000000 |
+| 1st Qu. |     10.2500 |   0.00000 |  1.000000 |
+| Median  |     54.0000 |   7.00000 |  2.000000 |
+| Mean    |    116.6263 |  27.56566 |  2.893939 |
+| 3rd Qu. |    164.0000 |  29.00000 |  4.000000 |
+| Max.    |    947.0000 | 296.00000 | 14.000000 |
+
+Next, the C position is entered into the function for the same
+franchise. Some things to point out are the maximum number of games
+played is 1062, the average number of goals was 28, and almost 3 seasons
+is the average number of seasons.
 
 ``` r
 SkatersTable("C")
 ```
 
-|         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
-| ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
-| Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          15.0000 |    1.00000 |     2.00000 |     1.000000 |
-| Median  |      9.00000 |          52.0000 |    7.00000 |    15.00000 |     2.000000 |
-| Mean    |     39.81435 |         114.0295 |   28.03797 |    67.85232 |     2.860759 |
-| 3rd Qu. |     38.00000 |         145.0000 |   26.00000 |    61.00000 |     3.000000 |
-| Max.    |    567.00000 |        1062.0000 |  420.00000 |   987.00000 |    15.000000 |
+|         | gamesPlayed |     Goals |   Seasons |
+| ------- | ----------: | --------: | --------: |
+| Min.    |      1.0000 |   0.00000 |  1.000000 |
+| 1st Qu. |     15.0000 |   1.00000 |  1.000000 |
+| Median  |     52.0000 |   7.00000 |  2.000000 |
+| Mean    |    114.0295 |  28.03797 |  2.860759 |
+| 3rd Qu. |    145.0000 |  26.00000 |  3.000000 |
+| Max.    |   1062.0000 | 420.00000 | 15.000000 |
+
+The D position is entered into the function for the same franchise. Some
+things to point out are on average players in this position play around
+122 games, 3 is the median number of goals, and 20 is the maximum number
+of seasons.
 
 ``` r
 SkatersTable("D")
 ```
 
-|         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
-| ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
-| Min.    |      0.00000 |           1.0000 |   0.000000 |     0.00000 |     1.000000 |
-| 1st Qu. |      1.00000 |          15.0000 |   0.000000 |     2.00000 |     1.000000 |
-| Median  |      8.00000 |          58.0000 |   3.000000 |    11.00000 |     2.000000 |
-| Mean    |     31.94118 |         122.3322 |   9.681661 |    41.62284 |     2.948097 |
-| 3rd Qu. |     31.00000 |         151.0000 |   9.000000 |    41.00000 |     4.000000 |
-| Max.    |    620.00000 |        1184.0000 | 148.000000 |   768.00000 |    20.000000 |
+|         | gamesPlayed |      Goals |   Seasons |
+| ------- | ----------: | ---------: | --------: |
+| Min.    |      1.0000 |   0.000000 |  1.000000 |
+| 1st Qu. |     15.0000 |   0.000000 |  1.000000 |
+| Median  |     58.0000 |   3.000000 |  2.000000 |
+| Mean    |    122.3322 |   9.681661 |  2.948097 |
+| 3rd Qu. |    151.0000 |   9.000000 |  4.000000 |
+| Max.    |   1184.0000 | 148.000000 | 20.000000 |
+
+R is the last position to be entered into the function for the same
+franchise. Some things to point out are the maximum number of games is
+1188, the average number of goals is around 32, and 2 is the median
+number of seasons.
 
 ``` r
 SkatersTable("R")
 ```
 
-|         | data.assists | data.gamesPlayed | data.goals | data.points | data.seasons |
-| ------- | -----------: | ---------------: | ---------: | ----------: | -----------: |
-| Min.    |      0.00000 |           1.0000 |    0.00000 |     0.00000 |     1.000000 |
-| 1st Qu. |      2.00000 |          17.0000 |    1.00000 |     3.00000 |     1.000000 |
-| Median  |     11.00000 |          70.0000 |    9.00000 |    23.00000 |     2.000000 |
-| Mean    |     37.24294 |         127.0621 |   32.37288 |    69.61582 |     3.056497 |
-| 3rd Qu. |     42.00000 |         172.0000 |   36.00000 |    82.00000 |     4.000000 |
-| Max.    |    417.00000 |        1188.0000 |  332.00000 |   713.00000 |    21.000000 |
+|         | gamesPlayed |     Goals |   Seasons |
+| ------- | ----------: | --------: | --------: |
+| Min.    |      1.0000 |   0.00000 |  1.000000 |
+| 1st Qu. |     17.0000 |   1.00000 |  1.000000 |
+| Median  |     70.0000 |   9.00000 |  2.000000 |
+| Mean    |    127.0621 |  32.37288 |  3.056497 |
+| 3rd Qu. |    172.0000 |  36.00000 |  4.000000 |
+| Max.    |   1188.0000 | 332.00000 | 21.000000 |
 
 # Plots
+
+This section covers
 
 ## Barplot
 
