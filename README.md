@@ -141,21 +141,16 @@ getFranchise <- function(){
 }
 ```
 
-The `getFranchise` function returns the following dataframe:
+The `getFranchise` function returns a dataframe with the following
+columns:
 
 ``` r
-library(knitr) #library for kable function
-kable(head(getFranchise())) #call function and return dataframe
+names(getFranchise())
 ```
 
-| data.id | data.firstSeasonId | data.lastSeasonId | data.mostRecentTeamId | data.teamCommonName | data.teamPlaceName | total |
-| ------: | -----------------: | ----------------: | --------------------: | :------------------ | :----------------- | ----: |
-|       1 |           19171918 |                NA |                     8 | Canadiens           | Montréal           |    38 |
-|       2 |           19171918 |          19171918 |                    41 | Wanderers           | Montreal           |    38 |
-|       3 |           19171918 |          19341935 |                    45 | Eagles              | St. Louis          |    38 |
-|       4 |           19191920 |          19241925 |                    37 | Tigers              | Hamilton           |    38 |
-|       5 |           19171918 |                NA |                    10 | Maple Leafs         | Toronto            |    38 |
-|       6 |           19241925 |                NA |                     6 | Bruins              | Boston             |    38 |
+    ## [1] "data.id"               "data.firstSeasonId"    "data.lastSeasonId"    
+    ## [4] "data.mostRecentTeamId" "data.teamCommonName"   "data.teamPlaceName"   
+    ## [7] "total"
 
 ## Franchise Team Totals Data from API
 
@@ -180,20 +175,29 @@ getTeamTotals <- function(){
 }
 ```
 
-The `getTeamTotals` function returns the following dataframe:
+The `getTeamTotals` function returns a dataframe with the following
+columns:
 
 ``` r
-kable(head(getTeamTotals())) #call function and return dataframe
+names(getTeamTotals())
 ```
 
-| data.id | data.activeFranchise | data.firstSeasonId | data.franchiseId | data.gameTypeId | data.gamesPlayed | data.goalsAgainst | data.goalsFor | data.homeLosses | data.homeOvertimeLosses | data.homeTies | data.homeWins | data.lastSeasonId | data.losses | data.overtimeLosses | data.penaltyMinutes | data.pointPctg | data.points | data.roadLosses | data.roadOvertimeLosses | data.roadTies | data.roadWins | data.shootoutLosses | data.shootoutWins | data.shutouts | data.teamId | data.teamName      | data.ties | data.triCode | data.wins | total |
-| ------: | -------------------: | -----------------: | ---------------: | --------------: | ---------------: | ----------------: | ------------: | --------------: | ----------------------: | ------------: | ------------: | ----------------: | ----------: | ------------------: | ------------------: | -------------: | ----------: | --------------: | ----------------------: | ------------: | ------------: | ------------------: | ----------------: | ------------: | ----------: | :----------------- | --------: | :----------- | --------: | ----: |
-|       1 |                    1 |           19821983 |               23 |               2 |             2937 |              8708 |          8647 |             507 |                      82 |            96 |           783 |                NA |        1181 |                 162 |               44397 |         0.5330 |        3131 |             674 |                      80 |           123 |           592 |                  79 |                78 |           193 |           1 | New Jersey Devils  |       219 | NJD          |      1375 |   104 |
-|       2 |                    1 |           19821983 |               23 |               3 |              257 |               634 |           697 |              53 |                       0 |            NA |            74 |                NA |         120 |                   0 |                4266 |         0.0039 |           2 |              67 |                       0 |            NA |            63 |                   0 |                 0 |            25 |           1 | New Jersey Devils  |        NA | NJD          |       137 |   104 |
-|       3 |                    1 |           19721973 |               22 |               2 |             3732 |             11779 |         11889 |             674 |                      81 |           170 |           942 |                NA |        1570 |                 159 |               57422 |         0.5115 |        3818 |             896 |                      78 |           177 |           714 |                  67 |                82 |           167 |           2 | New York Islanders |       347 | NYI          |      1656 |   104 |
-|       4 |                    1 |           19721973 |               22 |               3 |              272 |               806 |           869 |              46 |                       1 |            NA |            84 |                NA |         124 |                   0 |                5356 |         0.0147 |           8 |              78 |                       0 |            NA |            64 |                   0 |                 0 |             9 |           2 | New York Islanders |        NA | NYI          |       148 |   104 |
-|       5 |                    1 |           19261927 |               10 |               2 |             6504 |             19863 |         19864 |            1132 |                      73 |           448 |          1600 |                NA |        2693 |                 147 |               85564 |         0.5125 |        6667 |            1561 |                      74 |           360 |          1256 |                  66 |                78 |           403 |           3 | New York Rangers   |       808 | NYR          |      2856 |   104 |
-|       6 |                    1 |           19261927 |               10 |               3 |              515 |              1436 |          1400 |             103 |                       0 |             1 |           137 |                NA |         263 |                   0 |                8132 |         0.0000 |           0 |             160 |                       0 |             7 |           107 |                   0 |                 0 |            44 |           3 | New York Rangers   |         8 | NYR          |       244 |   104 |
+    ##  [1] "data.id"                 "data.activeFranchise"   
+    ##  [3] "data.firstSeasonId"      "data.franchiseId"       
+    ##  [5] "data.gameTypeId"         "data.gamesPlayed"       
+    ##  [7] "data.goalsAgainst"       "data.goalsFor"          
+    ##  [9] "data.homeLosses"         "data.homeOvertimeLosses"
+    ## [11] "data.homeTies"           "data.homeWins"          
+    ## [13] "data.lastSeasonId"       "data.losses"            
+    ## [15] "data.overtimeLosses"     "data.penaltyMinutes"    
+    ## [17] "data.pointPctg"          "data.points"            
+    ## [19] "data.roadLosses"         "data.roadOvertimeLosses"
+    ## [21] "data.roadTies"           "data.roadWins"          
+    ## [23] "data.shootoutLosses"     "data.shootoutWins"      
+    ## [25] "data.shutouts"           "data.teamId"            
+    ## [27] "data.teamName"           "data.ties"              
+    ## [29] "data.triCode"            "data.wins"              
+    ## [31] "total"
 
 ## Franchise Season Records Data from API
 
@@ -219,16 +223,43 @@ getSeasonRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getSeasonRecords` function returns the following dataframe
-when 2 is specified as the `FranchiseID`:
+Here, the `getSeasonRecords` function returns a dataframe for the
+specified franchise with the following columns. Here is an example of
+the columns when 2 is specified as the `FranchiseID`:
 
 ``` r
-kable(head(getSeasonRecords(2))) #call function and return dataframe
+names(getSeasonRecords(2))
 ```
 
-| data.id | data.fewestGoals | data.fewestGoalsAgainst | data.fewestGoalsAgainstSeasons | data.fewestGoalsSeasons | data.fewestLosses | data.fewestLossesSeasons | data.fewestPoints | data.fewestPointsSeasons | data.fewestTies | data.fewestTiesSeasons | data.fewestWins | data.fewestWinsSeasons | data.franchiseId | data.franchiseName | data.homeLossStreak | data.homeLossStreakDates  | data.homePointStreak | data.homePointStreakDates | data.homeWinStreak | data.homeWinStreakDates | data.homeWinlessStreak | data.homeWinlessStreakDates | data.lossStreak | data.lossStreakDates      | data.mostGameGoals | data.mostGameGoalsDates      | data.mostGoals | data.mostGoalsAgainst | data.mostGoalsAgainstSeasons | data.mostGoalsSeasons | data.mostLosses | data.mostLossesSeasons | data.mostPenaltyMinutes | data.mostPenaltyMinutesSeasons | data.mostPoints | data.mostPointsSeasons | data.mostShutouts | data.mostShutoutsSeasons | data.mostTies | data.mostTiesSeasons | data.mostWins | data.mostWinsSeasons | data.pointStreak | data.pointStreakDates | data.roadLossStreak | data.roadLossStreakDates  | data.roadPointStreak | data.roadPointStreakDates | data.roadWinStreak | data.roadWinStreakDates | data.roadWinlessStreak | data.roadWinlessStreakDates | data.winStreak | data.winStreakDates | data.winlessStreak | data.winlessStreakDates | total |
-| ------: | :--------------- | :---------------------- | :----------------------------- | :---------------------- | :---------------- | :----------------------- | :---------------- | :----------------------- | :-------------- | :--------------------- | :-------------- | :--------------------- | ---------------: | :----------------- | ------------------: | :------------------------ | :------------------- | :------------------------ | :----------------- | :---------------------- | ---------------------: | :-------------------------- | --------------: | :------------------------ | -----------------: | :--------------------------- | -------------: | --------------------: | :--------------------------- | :-------------------- | --------------: | :--------------------- | ----------------------: | :----------------------------- | --------------: | :--------------------- | ----------------: | :----------------------- | ------------: | :------------------- | ------------: | :------------------- | :--------------- | :-------------------- | ------------------: | :------------------------ | :------------------- | :------------------------ | :----------------- | :---------------------- | ---------------------: | :-------------------------- | :------------- | :------------------ | :----------------- | :---------------------- | ----: |
-|      41 | NA               | NA                      | NA                             | NA                      | NA                | NA                       | NA                | NA                       | NA              | NA                     | NA              | NA                     |                2 | Montreal Wanderers |                   2 | Dec 22 1917 - Dec 26 1917 | NA                   | NA                        | NA                 | NA                      |                      2 | Dec 22 1917 - Dec 26 1917   |               5 | Dec 22 1917 - Jan 05 1918 |                 10 | Dec 19 1917 - TAN 9 @ MWN 10 |             17 |                    37 | 1917-18 (22)                 | 1917-18 (22)          |               5 | 1917-18 (22)           |                      27 | 1917-18 (22)                   |               2 | 1917-18 (22)           |                 0 | 1917-18 (22)             |             0 | 1917-18 (22)         |             1 | 1917-18 (22)         | NA               | NA                    |                   3 | Dec 29 1917 - Jan 05 1918 | NA                   | NA                        | NA                 | NA                      |                      3 | Dec 29 1917 - Jan 05 1918   | NA             | NA                  | NA                 | NA                      |     1 |
+    ##  [1] "data.id"                        "data.fewestGoals"              
+    ##  [3] "data.fewestGoalsAgainst"        "data.fewestGoalsAgainstSeasons"
+    ##  [5] "data.fewestGoalsSeasons"        "data.fewestLosses"             
+    ##  [7] "data.fewestLossesSeasons"       "data.fewestPoints"             
+    ##  [9] "data.fewestPointsSeasons"       "data.fewestTies"               
+    ## [11] "data.fewestTiesSeasons"         "data.fewestWins"               
+    ## [13] "data.fewestWinsSeasons"         "data.franchiseId"              
+    ## [15] "data.franchiseName"             "data.homeLossStreak"           
+    ## [17] "data.homeLossStreakDates"       "data.homePointStreak"          
+    ## [19] "data.homePointStreakDates"      "data.homeWinStreak"            
+    ## [21] "data.homeWinStreakDates"        "data.homeWinlessStreak"        
+    ## [23] "data.homeWinlessStreakDates"    "data.lossStreak"               
+    ## [25] "data.lossStreakDates"           "data.mostGameGoals"            
+    ## [27] "data.mostGameGoalsDates"        "data.mostGoals"                
+    ## [29] "data.mostGoalsAgainst"          "data.mostGoalsAgainstSeasons"  
+    ## [31] "data.mostGoalsSeasons"          "data.mostLosses"               
+    ## [33] "data.mostLossesSeasons"         "data.mostPenaltyMinutes"       
+    ## [35] "data.mostPenaltyMinutesSeasons" "data.mostPoints"               
+    ## [37] "data.mostPointsSeasons"         "data.mostShutouts"             
+    ## [39] "data.mostShutoutsSeasons"       "data.mostTies"                 
+    ## [41] "data.mostTiesSeasons"           "data.mostWins"                 
+    ## [43] "data.mostWinsSeasons"           "data.pointStreak"              
+    ## [45] "data.pointStreakDates"          "data.roadLossStreak"           
+    ## [47] "data.roadLossStreakDates"       "data.roadPointStreak"          
+    ## [49] "data.roadPointStreakDates"      "data.roadWinStreak"            
+    ## [51] "data.roadWinStreakDates"        "data.roadWinlessStreak"        
+    ## [53] "data.roadWinlessStreakDates"    "data.winStreak"                
+    ## [55] "data.winStreakDates"            "data.winlessStreak"            
+    ## [57] "data.winlessStreakDates"        "total"
 
 ## Franchise Goalie Records Data from API
 
@@ -252,16 +283,29 @@ getGoalieRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getGoalieRecords` function returns the following dataframe
-when 2 is specified as the `FranchiseID`:
+Here, the `getGoalieRecords` function returns a dataframe for the
+specified franchise with the following columns. Here is an example of
+the columns when 2 is specified as the `FranchiseID`:
 
 ``` r
-kable(head(getGoalieRecords(2))) #call function and return dataframe
+names(getGoalieRecords(2))
 ```
 
-| data.id | data.activePlayer | data.firstName | data.franchiseId | data.franchiseName | data.gameTypeId | data.gamesPlayed | data.lastName | data.losses | data.mostGoalsAgainstDates | data.mostGoalsAgainstOneGame | data.mostSavesDates | data.mostSavesOneGame | data.mostShotsAgainstDates | data.mostShotsAgainstOneGame | data.mostShutoutsOneSeason | data.mostShutoutsSeasonIds | data.mostWinsOneSeason | data.mostWinsSeasonIds | data.overtimeLosses | data.playerId | data.positionCode | data.rookieGamesPlayed | data.rookieShutouts | data.rookieWins | data.seasons | data.shutouts | data.ties | data.wins | total |
-| ------: | :---------------- | :------------- | ---------------: | :----------------- | --------------: | ---------------: | :------------ | ----------: | :------------------------- | ---------------------------: | :------------------ | :-------------------- | :------------------------- | :--------------------------- | -------------------------: | :------------------------- | ---------------------: | :--------------------- | :------------------ | ------------: | :---------------- | ---------------------: | ------------------: | --------------: | -----------: | ------------: | --------: | --------: | ----: |
-|     250 | FALSE             | Bert           |                2 | Montreal Wanderers |               2 |                4 | Lindsay       |           3 | 1917-12-22                 |                           11 | NA                  | NA                    | NA                         | NA                           |                          0 | 19171918                   |                      1 | 19171918               | NA                  |       8450014 | G                 |                      4 |                   0 |               1 |            1 |             0 |         0 |         1 |     1 |
+    ##  [1] "data.id"                      "data.activePlayer"           
+    ##  [3] "data.firstName"               "data.franchiseId"            
+    ##  [5] "data.franchiseName"           "data.gameTypeId"             
+    ##  [7] "data.gamesPlayed"             "data.lastName"               
+    ##  [9] "data.losses"                  "data.mostGoalsAgainstDates"  
+    ## [11] "data.mostGoalsAgainstOneGame" "data.mostSavesDates"         
+    ## [13] "data.mostSavesOneGame"        "data.mostShotsAgainstDates"  
+    ## [15] "data.mostShotsAgainstOneGame" "data.mostShutoutsOneSeason"  
+    ## [17] "data.mostShutoutsSeasonIds"   "data.mostWinsOneSeason"      
+    ## [19] "data.mostWinsSeasonIds"       "data.overtimeLosses"         
+    ## [21] "data.playerId"                "data.positionCode"           
+    ## [23] "data.rookieGamesPlayed"       "data.rookieShutouts"         
+    ## [25] "data.rookieWins"              "data.seasons"                
+    ## [27] "data.shutouts"                "data.ties"                   
+    ## [29] "data.wins"                    "total"
 
 ## Franchise Skater Records Data from API
 
@@ -285,23 +329,30 @@ getSkaterRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getSkaterRecords` function returns the following dataframe
-when 2 is specified as the `FranchiseID`:
+Here, the `getSkaterRecords` function returns a dataframe for the
+specified franchise with the following columns. Here is an example of
+the columns when 2 is specified as the `FranchiseID`:
 
 ``` r
-kable(head(getSkaterRecords(2))) #call function and return dataframe
+names(getSkaterRecords(2))
 ```
 
-    ## No encoding supplied: defaulting to UTF-8.
-
-| data.id | data.activePlayer | data.assists | data.firstName | data.franchiseId | data.franchiseName | data.gameTypeId | data.gamesPlayed | data.goals | data.lastName | data.mostAssistsGameDates                      | data.mostAssistsOneGame | data.mostAssistsOneSeason | data.mostAssistsSeasonIds | data.mostGoalsGameDates                        | data.mostGoalsOneGame | data.mostGoalsOneSeason | data.mostGoalsSeasonIds | data.mostPenaltyMinutesOneSeason | data.mostPenaltyMinutesSeasonIds | data.mostPointsGameDates                       | data.mostPointsOneGame | data.mostPointsOneSeason | data.mostPointsSeasonIds | data.penaltyMinutes | data.playerId | data.points | data.positionCode | data.rookiePoints | data.seasons | total |
-| ------: | :---------------- | -----------: | :------------- | ---------------: | :----------------- | --------------: | ---------------: | ---------: | :------------ | :--------------------------------------------- | ----------------------: | ------------------------: | :------------------------ | :--------------------------------------------- | --------------------: | ----------------------: | :---------------------- | -------------------------------: | :------------------------------- | :--------------------------------------------- | ---------------------: | -----------------------: | :----------------------- | ------------------: | ------------: | ----------: | :---------------- | ----------------: | -----------: | ----: |
-|   16889 | FALSE             |            0 | Billy          |                2 | Montreal Wanderers |               2 |                2 |          1 | Bell          | 1917-12-19, 1917-12-29                         |                       0 |                         0 | 19171918                  | 1917-12-19                                     |                     1 |                       1 | 19171918                |                                0 | 19171918                         | 1917-12-19                                     |                      1 |                        1 | 19171918                 |                   0 |       8445044 |           1 | C                 |                 1 |            1 |    11 |
-|   16897 | FALSE             |            0 | Gerry          |                2 | Montreal Wanderers |               2 |                4 |          0 | Geran         | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                       0 |                         0 | 19171918                  | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                     0 |                       0 | 19171918                |                                0 | 19171918                         | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                      0 |                        0 | 19171918                 |                   0 |       8446580 |           0 | C                 |                 0 |            1 |    11 |
-|   16901 | FALSE             |            1 | Harry          |                2 | Montreal Wanderers |               2 |                4 |          6 | Hyland        | 1917-12-29                                     |                       1 |                         1 | 19171918                  | 1917-12-19                                     |                     5 |                       6 | 19171918                |                                6 | 19171918                         | 1917-12-19                                     |                      5 |                        7 | 19171918                 |                   6 |       8447013 |           7 | R                 |                 7 |            1 |    11 |
-|   16903 | FALSE             |            0 | Jack           |                2 | Montreal Wanderers |               2 |                1 |          0 | Marks         | 1917-12-29                                     |                       0 |                         0 | 19171918                  | 1917-12-29                                     |                     0 |                       0 | 19171918                |                                0 | 19171918                         | 1917-12-29                                     |                      0 |                        0 | 19171918                 |                   0 |       8447616 |           0 | L                 |                 0 |            1 |    11 |
-|   16904 | FALSE             |            1 | Jack           |                2 | Montreal Wanderers |               2 |                4 |          3 | McDonald      | 1917-12-29                                     |                       1 |                         1 | 19171918                  | 1917-12-19, 1917-12-22, 1917-12-26             |                     1 |                       3 | 19171918                |                                3 | 19171918                         | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                      1 |                        4 | 19171918                 |                   3 |       8447761 |           4 | L                 |                 4 |            1 |    11 |
-|   16908 | FALSE             |            0 | George         |                2 | Montreal Wanderers |               2 |                4 |          0 | O’Grady       | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                       0 |                         0 | 19171918                  | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                     0 |                       0 | 19171918                |                                0 | 19171918                         | 1917-12-19, 1917-12-22, 1917-12-26, 1917-12-29 |                      0 |                        0 | 19171918                 |                   0 |       8448052 |           0 | D                 |                 0 |            1 |    11 |
+    ##  [1] "data.id"                          "data.activePlayer"               
+    ##  [3] "data.assists"                     "data.firstName"                  
+    ##  [5] "data.franchiseId"                 "data.franchiseName"              
+    ##  [7] "data.gameTypeId"                  "data.gamesPlayed"                
+    ##  [9] "data.goals"                       "data.lastName"                   
+    ## [11] "data.mostAssistsGameDates"        "data.mostAssistsOneGame"         
+    ## [13] "data.mostAssistsOneSeason"        "data.mostAssistsSeasonIds"       
+    ## [15] "data.mostGoalsGameDates"          "data.mostGoalsOneGame"           
+    ## [17] "data.mostGoalsOneSeason"          "data.mostGoalsSeasonIds"         
+    ## [19] "data.mostPenaltyMinutesOneSeason" "data.mostPenaltyMinutesSeasonIds"
+    ## [21] "data.mostPointsGameDates"         "data.mostPointsOneGame"          
+    ## [23] "data.mostPointsOneSeason"         "data.mostPointsSeasonIds"        
+    ## [25] "data.penaltyMinutes"              "data.playerId"                   
+    ## [27] "data.points"                      "data.positionCode"               
+    ## [29] "data.rookiePoints"                "data.seasons"                    
+    ## [31] "total"
 
 # Contingency Tables
 
@@ -311,7 +362,14 @@ frequency of categorical variables.
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
+Below, the goalie records of select franchises are binded together into
+1 dataframe and the 2 categorical variables of interest are:
+`ActivePlayer` and `franchiseName`. Based on the contingincy table, all
+of the selected franchises have more inactive players than active
+players.
+
 ``` r
+library(knitr)
 #Create dataframe of goalie records for select franchises
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
@@ -334,6 +392,10 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 | Vancouver Canucks   |              34 |             5 |
 
 ## Positions in Skater Records for Select Franchises
+
+The dataframe for this contingency table was created in a similar way to
+the table above by binding together the skater records of select
+franchises and factor
 
 ``` r
 #Create dataframe of goalie records for select franchises

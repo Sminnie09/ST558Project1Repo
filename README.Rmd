@@ -5,6 +5,7 @@ date: "6/5/2020"
 output:
   rmarkdown::github_document:
     toc: true
+    
 ---
 
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a blog post linking to your vignette.All project work should be done in a github repo. 
@@ -76,11 +77,10 @@ getFranchise <- function(){
 
 ```
 
-The `getFranchise` function returns the following dataframe:
+The `getFranchise` function returns a dataframe with the following columns:
 
 ```{r getFranchise dataframe, echo = TRUE, message = FALSE}
-library(knitr) #library for kable function
-kable(head(getFranchise())) #call function and return dataframe
+names(getFranchise())
 ```
 
 ## Franchise Team Totals Data from API
@@ -105,10 +105,10 @@ getTeamTotals <- function(){
 }
 ```
 
-The `getTeamTotals` function returns the following dataframe:
+The `getTeamTotals` function returns a dataframe with the following columns:
 
 ```{r getTeamTotals, echo = TRUE, message = FALSE}
-kable(head(getTeamTotals())) #call function and return dataframe
+names(getTeamTotals())
 ```
 
 
@@ -136,10 +136,10 @@ getSeasonRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getSeasonRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+Here, the `getSeasonRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
 ```{r getSeasonRecords dataframe, echo = TRUE, message = FALSE}
-kable(head(getSeasonRecords(2))) #call function and return dataframe
+names(getSeasonRecords(2))
 ```
 
 ## Franchise Goalie Records Data from API
@@ -164,10 +164,10 @@ getGoalieRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getGoalieRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+Here, the `getGoalieRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
 ```{r getGoalieRecords, echo = TRUE, message = FALSE}
-kable(head(getGoalieRecords(2))) #call function and return dataframe
+names(getGoalieRecords(2))
 ```
 
 ## Franchise Skater Records Data from API
@@ -192,10 +192,10 @@ getSkaterRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getSkaterRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+Here, the `getSkaterRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
-```{r getSkaterRecords, echo = TRUE}
-kable(head(getSkaterRecords(2))) #call function and return dataframe
+```{r getSkaterRecords, echo = TRUE, message = FALSE}
+names(getSkaterRecords(2))
 ```
 
 # Contingency Tables 
@@ -204,10 +204,10 @@ This section covers using the functions above to create contingency tables of th
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
-
+Below, the goalie records of select franchises are binded together into 1 dataframe and the 2 categorical variables of interest are: `ActivePlayer` and `franchiseName`. Based on the contingincy table, all of the selected franchises have more inactive players than active players.
 
 ```{r goalie records counts table, echo = TRUE, message = FALSE}
-
+library(knitr)
 #Create dataframe of goalie records for select franchises
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
@@ -221,6 +221,8 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 ```
 
 ## Positions in Skater Records for Select Franchises
+
+The dataframe for this contingency table was created in a similar way to the table above by binding together the skater records of select franchises and factor
 
 ```{r position by franchise, echo TRUE, message = FALSE}
 
