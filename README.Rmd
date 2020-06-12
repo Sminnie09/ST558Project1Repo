@@ -52,15 +52,11 @@ There are five functions in this vignette:
 * `getGoalieRecords`
 * `getSkaterRecords`
 
-Each function uses a `GET` request to contact the host [NHL records 'Franchise' API]() by initializing the variables for the API call. Each function returns a data frame of results for a specific table. Next, the data is parsed through to create a useful `R` object by changing the raw data from the API call into JSON format using the `httr` function called `content`. Finally, the parsed JSON data is converted to a dataframe.
+Each function uses a `GET` request to contact the host [NHL records 'Franchise' API]() by initializing the variables for the API call. Each function returns a data frame of results for a specific table. Next, the data is parsed through to create a useful `R` object by changing the raw data from the API call into JSON format using the `httr` function called `content`. Finally, the parsed JSON data is converted to a dataframe and returned by the function.
 
 ## Franchise Data from API
 
-The `getFranchise` function returns the following data in a data frame:
-
-* `id`
-* `firstSeasonID`
-* `lastSeasonID`
+The `getFranchise` function returns `id`, `firstSeasonId`, and `lastSeasonId` and name of every team in the history of the NHL from the API for each franchise in a dataframe.
 
 ```{r franchise function, echo = TRUE}
 getFranchise <- function(){
@@ -69,7 +65,7 @@ getFranchise <- function(){
   tab_name <- "franchise"
   full_url <- paste0(base_url, "/", tab_name)
 
-  get_franchise <- GET(full_url)
+  get_franchise <- GET(full_url, timeout = 1000)
 
   get_franchise_text <- content(get_franchise, "text")
 
@@ -80,8 +76,17 @@ getFranchise <- function(){
 
 ```
 
+The `getFranchise` function returns the following dataframe:
+
+```{r getFranchise dataframe, echo = TRUE, message = FALSE}
+library(knitr) #library for kable function
+kable(head(getFranchise())) #call function and return dataframe
+```
 
 ## Franchise Team Totals Data from API
+
+The `getTeamTotals` function returns total stats for every franchise from the API.
+
 ```{r FranchiseTeamTotals, echo = TRUE, message = FALSE}
 getTeamTotals <- function(){
   
@@ -89,7 +94,7 @@ getTeamTotals <- function(){
   tab_name <- "franchise-team-totals"
   full_url <- paste0(base_url, "/", tab_name)
 
-  get_TeamTotals <- GET(full_url)
+  get_TeamTotals <- GET(full_url, timeout = 1000)
 
   get_TeamTotals_text <- content(get_TeamTotals, "text")
 
@@ -100,7 +105,17 @@ getTeamTotals <- function(){
 }
 ```
 
+The `getTeamTotals` function returns the following dataframe:
+
+```{r getTeamTotals, echo = TRUE, message = FALSE}
+kable(head(getTeamTotals())) #call function and return dataframe
+```
+
+
 ## Franchise Season Records Data from API
+
+The `getSeasonRecords` function returns season records for the specified `FranchiseID`.
+
 ```{r FranchiseSeasonRecords, echo = TRUE}
 getSeasonRecords <- function(FranchiseID){
   
@@ -109,7 +124,7 @@ getSeasonRecords <- function(FranchiseID){
   tab_name <- "franchise-season-records?cayenneExp=franchiseId="
   full_url <- paste0(base_url, "/", tab_name, FranchiseID)
 
-  get_SeasonRecords <- GET(full_url)
+  get_SeasonRecords <- GET(full_url,timeout = 1000)
 
   get_SeasonRecords_text <- content(get_SeasonRecords, "text")
 
@@ -121,7 +136,15 @@ getSeasonRecords <- function(FranchiseID){
 
 ```
 
+Here, the `getSeasonRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+
+```{r getSeasonRecords dataframe, echo = TRUE, message = FALSE}
+kable(head(getSeasonRecords(2))) #call function and return dataframe
+```
+
 ## Franchise Goalie Records Data from API
+
+The `getGoalieRecords` function returns goalie records for the specified `FranchiseID`.
 
 ```{r GoalieRecords, echo = TRUE}
 getGoalieRecords <- function(FranchiseID){
@@ -130,7 +153,7 @@ getGoalieRecords <- function(FranchiseID){
   tab_name <- "franchise-goalie-records?cayenneExp=franchiseId="
   full_url <- paste0(base_url, "/", tab_name, FranchiseID)
 
-  get_GoalieRecords <- GET(full_url)
+  get_GoalieRecords <- GET(full_url, timeout = 1000)
 
   get_GoalieRecords_text <- content(get_GoalieRecords, "text")
 
@@ -141,7 +164,15 @@ getGoalieRecords <- function(FranchiseID){
 
 ```
 
+Here, the `getGoalieRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+
+```{r getGoalieRecords, echo = TRUE, message = FALSE}
+kable(head(getGoalieRecords(2))) #call function and return dataframe
+```
+
 ## Franchise Skater Records Data from API
+
+The `getSkaterRecords` function returns skater records for the specified `FranchiseID`.
 
 ```{r SkaterRecords, echo = TRUE}
 getSkaterRecords <- function(FranchiseID){
@@ -150,7 +181,7 @@ getSkaterRecords <- function(FranchiseID){
   tab_name <- "franchise-skater-records?cayenneExp=franchiseId="
   full_url <- paste0(base_url, "/", tab_name, FranchiseID)
 
-  get_SkaterRecords <- GET(full_url)
+  get_SkaterRecords <- GET(full_url, timeout = 1000)
 
   get_SkaterRecords_text <- content(get_SkaterRecords, "text")
 
@@ -161,12 +192,21 @@ getSkaterRecords <- function(FranchiseID){
 
 ```
 
+Here, the `getSkaterRecords` function returns the following dataframe when 2 is specified as the `FranchiseID`:
+
+```{r getSkaterRecords, echo = TRUE}
+kable(head(getSkaterRecords(2))) #call function and return dataframe
+```
+
 # Contingency Tables 
+
+This section covers using the functions above to create contingency tables of the NHL data. Contingency tables are tables used to show the frequency of categorical variables.
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
+
+
 ```{r goalie records counts table, echo = TRUE, message = FALSE}
-library(knitr) #Load knirt r package
 
 #Create dataframe of goalie records for select franchises
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
