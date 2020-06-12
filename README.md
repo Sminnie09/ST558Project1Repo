@@ -22,9 +22,9 @@ Noel Hilliard
   - [Contingency Tables](#contingency-tables)
       - [Active and Inactive Players in Goalie Records for Select
         Franchises](#active-and-inactive-players-in-goalie-records-for-select-franchises)
-  - [Numeric Summaries](#numeric-summaries)
       - [Positions in Skater Records for Select
         Franchises](#positions-in-skater-records-for-select-franchises)
+  - [Numeric Summaries](#numeric-summaries)
       - [Numeric Summary of Select Columns from Skater
         Records](#numeric-summary-of-select-columns-from-skater-records)
   - [Plots](#plots)
@@ -88,6 +88,10 @@ it can interact with APIs, building pipelines, and streaming data.
 
 # Functions
 
+To get started, load the `httr` and `jsonlite` libraries. The `httr`
+library will be used to contact the NHL records ‘Franchise’ API. The
+`JSONlite` library will be used to convert JSON data to `R` objects.
+
 ``` r
 #install.packages("httr")
 
@@ -98,7 +102,31 @@ library("httr")
 library("jsonlite")
 ```
 
+There are five functions in this vignette:
+
+  - `getFranchise`
+  - `getTeamTotals`
+  - `getSeasonRecords`
+  - `getGoalieRecords`
+  - `getSkaterRecords`
+
+Each function uses a `GET` request to contact the host [NHL records
+‘Franchise’ API]() by initializing the variables for the API call.
+Each function returns a data frame of results for a specific table.
+Next, the data is parsed through to create a useful `R` object by
+changing the raw data from the API call into JSON format using the
+`httr` function called `content`. Finally, the parsed JSON data is
+converted to a dataframe.
+
 ## Franchise Data from API
+
+The `getFranchise` function returns the following data in a data frame:
+
+  - `id`
+  - `firstSeasonID`
+  - `lastSeasonID`
+
+<!-- end list -->
 
 ``` r
 getFranchise <- function(){
@@ -224,8 +252,6 @@ kable(table(GoalieRecords$data.franchiseName,GoalieRecords$data.activePlayer),
 | Toronto Maple Leafs |              46 |             7 |
 | Vancouver Canucks   |              34 |             5 |
 
-# Numeric Summaries
-
 ## Positions in Skater Records for Select Franchises
 
 ``` r
@@ -248,6 +274,8 @@ kable(table(SkaterRecords$data.franchiseName, SkaterRecords$data.positionCode))
 | New York Rangers    | 228 | 308 | 230 | 217 |
 | Toronto Maple Leafs | 237 | 289 | 198 | 177 |
 | Vancouver Canucks   | 146 | 197 | 106 | 112 |
+
+# Numeric Summaries
 
 ## Numeric Summary of Select Columns from Skater Records
 

@@ -31,6 +31,8 @@ The three major packages to read JSON data into R are `rJSON`, `RJSONIO`, and `R
 
 # Functions
 
+To get started, load the `httr` and `jsonlite` libraries. The `httr` library will be used to contact the NHL records 'Franchise' API. The `JSONlite` library will be used to convert JSON data to `R` objects. 
+
 ```{r Install Packages, echo = TRUE, message = FALSE}
 
 #install.packages("httr")
@@ -42,7 +44,24 @@ library("httr")
 library("jsonlite")
 ```
 
+There are five functions in this vignette:
+
+* `getFranchise`
+* `getTeamTotals`
+* `getSeasonRecords`
+* `getGoalieRecords`
+* `getSkaterRecords`
+
+Each function uses a `GET` request to contact the host [NHL records 'Franchise' API]() by initializing the variables for the API call. Each function returns a data frame of results for a specific table. Next, the data is parsed through to create a useful `R` object by changing the raw data from the API call into JSON format using the `httr` function called `content`. Finally, the parsed JSON data is converted to a dataframe.
+
 ## Franchise Data from API
+
+The `getFranchise` function returns the following data in a data frame:
+
+* `id`
+* `firstSeasonID`
+* `lastSeasonID`
+
 ```{r franchise function, echo = TRUE}
 getFranchise <- function(){
 
@@ -63,7 +82,7 @@ getFranchise <- function(){
 
 
 ## Franchise Team Totals Data from API
-```{r FranchiseTeamTotals, echo = TRUE}
+```{r FranchiseTeamTotals, echo = TRUE, message = FALSE}
 getTeamTotals <- function(){
   
   base_url <- "https://records.nhl.com/site/api"
