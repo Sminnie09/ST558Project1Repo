@@ -518,9 +518,16 @@ SkatersTable("R")
 
 # Plots
 
-This section covers
+This section covers graphical summaries of the data pulled from the NHL
+Franchise.
 
 ## Barplot
+
+This is a side-by-side bar plot of the count of inactive and active
+players for select franchises. For these select franchises, the New York
+Rangers has the largest number of inactive players and all of the
+franchises hasve significantly less active players than inactive
+players.
 
 ``` r
 library(ggplot2) #load ggplot for plots
@@ -535,12 +542,17 @@ levels(SkaterRecords$data.activePlayer) <- player_new
 
 #
 g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
-g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "") + theme(axis.text.x = element_text(size = 10, angle = 90))
+g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "", title = "Inactive and Active Players for Select Franchises") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
 
 ![](README_files/figure-gfm/Skater%20bar%20plot-1.png)<!-- -->
 
 ## Boxplot
+
+This is a side-by-side boxplot of the losses for select franchises in
+the goalie records. All of the franchises have around the same
+interquartile ranges and the New York Rangers have some outliers higher
+than the other franchises.
 
 ``` r
 #create dataframe of select franchises from goalie records
@@ -548,7 +560,7 @@ GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecord
 
 #create barplot
 g <- ggplot(GoalieRecords, aes(x = data.franchiseName, y = data.losses))
-g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses")
+g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses", title = "Losses for Select Franchises")
 ```
 
 ![](README_files/figure-gfm/losses%20boxplot-1.png)<!-- -->
@@ -559,7 +571,7 @@ g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + 
 SkaterRecords <- rbind(getSkaterRecords(23), getSkaterRecords(16), getSkaterRecords(3), getSkaterRecords(6))
 
 g <- ggplot(SkaterRecords, aes(x = data.gamesPlayed, y = data.mostGoalsOneSeason))
-g + geom_point(aes(color = data.franchiseName)) + labs(x = "Games Played", y = "Most Goals in One Season", color = "Franchise Name")
+g + geom_point(aes(color = data.franchiseName)) + labs(x = "Games Played", y = "Most Goals in One Season", color = "Franchise Name", title = "Games Played vs. Most Goals in One Season") + geom_smooth(aes(group = data.franchiseName), method = "lm", color = "black")
 ```
 
 ![](README_files/figure-gfm/scatter%20plot-1.png)<!-- -->
