@@ -283,7 +283,7 @@ SkatersTable("R")
 
 This section covers graphical summaries of the data pulled from the NHL Franchise API.
 
-## Barplot
+## Bar Plot
 
 This is a side-by-side bar plot of the count of inactive and active players for select franchises. For these select franchises, the New York Rangers has the largest number of inactive players and all of the franchises have significantly less active players than inactive players.
 
@@ -303,7 +303,7 @@ g <- ggplot(data = SkaterRecords, aes(x = data.franchiseName))
 g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Franchise Name", fill = "", title = "Inactive and Active Players for Select Franchises") + theme(axis.text.x = element_text(size = 10, angle = 90))
 ```
 
-## Boxplot
+## Box Plot
 
 This is a side-by-side boxplot of the losses for select franchises in the goalie records. All of the franchises have around the same interquartile ranges and the New York Rangers have some outliers higher than the other franchises.
 
