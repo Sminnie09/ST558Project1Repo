@@ -28,8 +28,8 @@ June 12, 2020
       - [Numeric Summary of Select Columns from Skater
         Records](#numeric-summary-of-select-columns-from-skater-records)
   - [Plots](#plots)
-      - [Barplot](#barplot)
-      - [Boxplot](#boxplot)
+      - [Bar Plot](#bar-plot)
+      - [Box Plot](#box-plot)
       - [Scatter Plot](#scatter-plot)
 
 Project Objective: This project involves creating a vignette (an HTML
