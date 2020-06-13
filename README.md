@@ -1,7 +1,7 @@
 ST558 Project 1
 ================
 Noel Hilliard
-6/5/2020
+June 12, 2020
 
   - [JSON Data](#json-data)
       - [What is it?](#what-is-it)
@@ -51,7 +51,7 @@ data structure is recognized as “an object, record, struct, dictionary,
 hash table, keyed list, or associative array.” The second data structure
 is recognized as “an array, vector list, or sequence.” There are seven
 value types: string, number, object, array, true, false, and null
-(<https://javaee.github.io/tutorial/jsonp001.html>) JSON data is a text
+(<https://javaee.github.io/tutorial/jsonp001.html>). JSON data is a text
 format that does not depend on language so it is compatible with several
 languages including C, C++, C\#, Java, JavaScript, Perl, and
 Python.[(JSON.org)](https://www.json.org/json-en.html)
@@ -77,18 +77,18 @@ data format that can be used by any programming language.
 # JSON Packages in R
 
 The three major packages to read JSON data into R are `rJSON`,
-`RJSONIO`, and `RJSONlite`. All three packages have two identical
+`RJSONIO`, and `JSONlite`. All three packages have two identical
 functions to convert between JSON data and `R` objects: `toJSON` and
 `fromJSON`. In addtion to these functions, `rJSON` has a function called
 `newJSONParser` to convert JSON objects into R objects. `RJSONIO` has an
 additional function called `asJSVars` to serialize R objects. The last
-package, `RJSONlite` is the one I chose to use for this vignette because
+package, `JSONlite` is the one I chose to use for this vignette because
 it can interact with APIs, building pipelines, and streaming data.
 (<http://anotherpeak.org/blog/tech/2016/03/10/understand_json_3.html>)
 
 # Functions
 
-To get started, load the `httr` and `jsonlite` libraries. The `httr`
+To get started, load the `httr` and `JSONlite` libraries. The `httr`
 library will be used to contact the NHL records ‘Franchise’ API. The
 `JSONlite` library will be used to convert JSON data to `R` objects.
 
@@ -111,12 +111,13 @@ There are five functions in this vignette:
   - `getSkaterRecords`
 
 Each function uses a `GET` request to contact the host [NHL records
-‘Franchise’ API]() by initializing the variables for the API call.
-Each function returns a data frame of results for a specific table.
-Next, the data is parsed through to create a useful `R` object by
-changing the raw data from the API call into JSON format using the
-`httr` function called `content`. Finally, the parsed JSON data is
-converted to a dataframe and returned by the function.
+‘Franchise’
+API](https://gitlab.com/dword4/nhlapi/-/blob/master/records-api.md) by
+initializing the variables for the API call. Next, the data is parsed
+through to create a useful `R` object by changing the raw data from the
+API call into JSON format using the `httr` function called `content`.
+Finally, the parsed JSON data is converted to a dataframe and returned
+by the function.
 
 ## Franchise Data from API
 
@@ -223,9 +224,9 @@ getSeasonRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getSeasonRecords` function returns a dataframe for the
-specified franchise with the following columns. Here is an example of
-the columns when 2 is specified as the `FranchiseID`:
+The `getSeasonRecords` function returns a dataframe for the specified
+franchise with the following columns. Here is an example of the columns
+when 2 is specified as the `FranchiseID`:
 
 ``` r
 names(getSeasonRecords(2))
@@ -283,9 +284,9 @@ getGoalieRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getGoalieRecords` function returns a dataframe for the
-specified franchise with the following columns. Here is an example of
-the columns when 2 is specified as the `FranchiseID`:
+The `getGoalieRecords` function returns a dataframe for the specified
+franchise with the following columns. Here is an example of the columns
+when 2 is specified as the `FranchiseID`:
 
 ``` r
 names(getGoalieRecords(2))
@@ -329,9 +330,9 @@ getSkaterRecords <- function(FranchiseID){
 }
 ```
 
-Here, the `getSkaterRecords` function returns a dataframe for the
-specified franchise with the following columns. Here is an example of
-the columns when 2 is specified as the `FranchiseID`:
+The `getSkaterRecords` function returns a dataframe for the specified
+franchise with the following columns. Here is an example of the columns
+when 2 is specified as the `FranchiseID`:
 
 ``` r
 names(getSkaterRecords(2))
@@ -362,8 +363,8 @@ frequency of categorical variables.
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
-Below, the goalie records of select franchises are binded together into
-1 dataframe and the 2 categorical variables of interest are:
+The goalie records of select franchises are binded together into 1
+dataframe and the 2 categorical variables of interest are:
 `ActivePlayer` and `franchiseName`. Based on the contingency table, all
 of the selected franchises have more inactive players than active
 players.
@@ -444,10 +445,10 @@ SkatersTable <- function(position){
 }
 ```
 
-Here, the L position was entered into the function for the Toronto Maple
+The L position was entered into the function for the Toronto Maple
 Leafs. Some things to point out are the maximum number of goals in this
 position for this franchise is 296, on average each player played 116
-games, and 2 was the median number of seasons.
+games, and 3 was the median number of seasons.
 
 ``` r
 SkatersTable("L")
@@ -519,15 +520,14 @@ SkatersTable("R")
 # Plots
 
 This section covers graphical summaries of the data pulled from the NHL
-Franchise.
+Franchise API.
 
 ## Barplot
 
 This is a side-by-side bar plot of the count of inactive and active
 players for select franchises. For these select franchises, the New York
 Rangers has the largest number of inactive players and all of the
-franchises hasve significantly less active players than inactive
-players.
+franchises have significantly less active players than inactive players.
 
 ``` r
 library(ggplot2) #load ggplot for plots
@@ -566,6 +566,11 @@ g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + 
 ![](README_files/figure-gfm/losses%20boxplot-1.png)<!-- -->
 
 ## Scatter Plot
+
+This is a scatter plot of games played vs. most goals in one season for
+select franchises. Based on this scatter plot, the franchises follow a
+similar trend that games played is associated with most goals in one
+season.
 
 ``` r
 SkaterRecords <- rbind(getSkaterRecords(23), getSkaterRecords(16), getSkaterRecords(3), getSkaterRecords(6))

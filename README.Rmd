@@ -1,11 +1,10 @@
 ---
 title: "ST558 Project 1"
 author: "Noel Hilliard"
-date: "6/5/2020"
+date: "June 12, 2020"
 output:
   rmarkdown::github_document:
     toc: true
-    
 ---
 
 Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a blog post linking to your vignette.All project work should be done in a github repo. 
@@ -14,7 +13,7 @@ Project Objective: This project involves creating a vignette (an HTML file with 
 
 ## What is it?
 
-JavaScript Object Notation (JSON) data is a lightweight data-interchange format used to store data. According to [JSON.org](https://www.json.org/json-en.html), JSON data has two data structures that are recognized by all programming languages: (1) A collection of name/value pairs (2) An ordered list of values. The first data structure is recognized as "an object, record, struct, dictionary, hash table, keyed list, or associative array." The second data structure is recognized as "an array, vector list, or sequence." There are seven value types: string, number, object, array, true, false, and null (https://javaee.github.io/tutorial/jsonp001.html) JSON data is a text format that does not depend on language so it is compatible with several languages including C, C++, C#, Java, JavaScript, Perl, and Python.[(JSON.org)](https://www.json.org/json-en.html)
+JavaScript Object Notation (JSON) data is a lightweight data-interchange format used to store data. According to [JSON.org](https://www.json.org/json-en.html), JSON data has two data structures that are recognized by all programming languages: (1) A collection of name/value pairs (2) An ordered list of values. The first data structure is recognized as "an object, record, struct, dictionary, hash table, keyed list, or associative array." The second data structure is recognized as "an array, vector list, or sequence." There are seven value types: string, number, object, array, true, false, and null (https://javaee.github.io/tutorial/jsonp001.html). JSON data is a text format that does not depend on language so it is compatible with several languages including C, C++, C#, Java, JavaScript, Perl, and Python.[(JSON.org)](https://www.json.org/json-en.html)
 
 ## Where does it get used?
 
@@ -27,12 +26,12 @@ JSON data is a good way to store data because it is a text only format. The form
 
 # JSON Packages in R
 
-The three major packages to read JSON data into R are `rJSON`, `RJSONIO`, and `RJSONlite`. All three packages have two identical functions to convert between JSON data and `R` objects: `toJSON` and `fromJSON`. In addtion to these functions, `rJSON` has a function called `newJSONParser` to convert JSON objects into R objects. `RJSONIO` has an additional function called `asJSVars` to serialize R objects. The last package, `RJSONlite` is the one I chose to use for this vignette because it can interact with APIs, building pipelines, and streaming data. (http://anotherpeak.org/blog/tech/2016/03/10/understand_json_3.html)
+The three major packages to read JSON data into R are `rJSON`, `RJSONIO`, and `JSONlite`. All three packages have two identical functions to convert between JSON data and `R` objects: `toJSON` and `fromJSON`. In addtion to these functions, `rJSON` has a function called `newJSONParser` to convert JSON objects into R objects. `RJSONIO` has an additional function called `asJSVars` to serialize R objects. The last package, `JSONlite` is the one I chose to use for this vignette because it can interact with APIs, building pipelines, and streaming data. (http://anotherpeak.org/blog/tech/2016/03/10/understand_json_3.html)
 
 
 # Functions
 
-To get started, load the `httr` and `jsonlite` libraries. The `httr` library will be used to contact the NHL records 'Franchise' API. The `JSONlite` library will be used to convert JSON data to `R` objects. 
+To get started, load the `httr` and `JSONlite` libraries. The `httr` library will be used to contact the NHL records 'Franchise' API. The `JSONlite` library will be used to convert JSON data to `R` objects. 
 
 ```{r Install Packages, echo = TRUE, message = FALSE}
 
@@ -53,7 +52,7 @@ There are five functions in this vignette:
 * `getGoalieRecords`
 * `getSkaterRecords`
 
-Each function uses a `GET` request to contact the host [NHL records 'Franchise' API]() by initializing the variables for the API call. Each function returns a data frame of results for a specific table. Next, the data is parsed through to create a useful `R` object by changing the raw data from the API call into JSON format using the `httr` function called `content`. Finally, the parsed JSON data is converted to a dataframe and returned by the function.
+Each function uses a `GET` request to contact the host [NHL records 'Franchise' API](https://gitlab.com/dword4/nhlapi/-/blob/master/records-api.md) by initializing the variables for the API call. Next, the data is parsed through to create a useful `R` object by changing the raw data from the API call into JSON format using the `httr` function called `content`. Finally, the parsed JSON data is converted to a dataframe and returned by the function.
 
 ## Franchise Data from API
 
@@ -136,7 +135,7 @@ getSeasonRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getSeasonRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
+The `getSeasonRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
 ```{r getSeasonRecords dataframe, echo = TRUE, message = FALSE}
 names(getSeasonRecords(2))
@@ -164,7 +163,7 @@ getGoalieRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getGoalieRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
+The `getGoalieRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
 ```{r getGoalieRecords, echo = TRUE, message = FALSE}
 names(getGoalieRecords(2))
@@ -192,7 +191,7 @@ getSkaterRecords <- function(FranchiseID){
 
 ```
 
-Here, the `getSkaterRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
+The `getSkaterRecords` function returns a dataframe for the specified franchise with the following columns. Here is an example of the columns when 2 is specified as the `FranchiseID`:
 
 ```{r getSkaterRecords, echo = TRUE, message = FALSE}
 names(getSkaterRecords(2))
@@ -204,7 +203,7 @@ This section covers using the functions above to create contingency tables of th
 
 ## Active and Inactive Players in Goalie Records for Select Franchises
 
-Below, the goalie records of select franchises are binded together into 1 dataframe and the 2 categorical variables of interest are: `ActivePlayer` and `franchiseName`. Based on the contingency table, all of the selected franchises have more inactive players than active players.
+The goalie records of select franchises are binded together into 1 dataframe and the 2 categorical variables of interest are: `ActivePlayer` and `franchiseName`. Based on the contingency table, all of the selected franchises have more inactive players than active players.
 
 ```{r goalie records counts table, echo = TRUE, message = FALSE}
 library(knitr)
@@ -256,7 +255,7 @@ SkatersTable <- function(position){
 
 ```
 
-Here, the L position was entered into the function for the Toronto Maple Leafs. Some things to point out are the maximum number of goals in this position for this franchise is 296, on average each player played 116 games, and 2 was the median number of seasons.
+The L position was entered into the function for the Toronto Maple Leafs. Some things to point out are the maximum number of goals in this position for this franchise is 296, on average each player played 116 games, and 3 was the median number of seasons.
 
 ```{r position numeric summary L, echo = TRUE, message = FALSE}
 SkatersTable("L")
@@ -282,11 +281,11 @@ SkatersTable("R")
 
 # Plots
 
-This section covers graphical summaries of the data pulled from the NHL Franchise.
+This section covers graphical summaries of the data pulled from the NHL Franchise API.
 
 ## Barplot
 
-This is a side-by-side bar plot of the count of inactive and active players for select franchises. For these select franchises, the New York Rangers has the largest number of inactive players and all of the franchises hasve significantly less active players than inactive players.
+This is a side-by-side bar plot of the count of inactive and active players for select franchises. For these select franchises, the New York Rangers has the largest number of inactive players and all of the franchises have significantly less active players than inactive players.
 
 ```{r Skater bar plot, echo = TRUE, message = FALSE}
 library(ggplot2) #load ggplot for plots
@@ -322,7 +321,7 @@ g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + 
 
 ## Scatter Plot
 
-
+This is a scatter plot of games played vs. most goals in one season for select franchises. Based on this scatter plot, the franchises follow a similar trend that games played is associated with most goals in one season.
 
 ```{r scatter plot, echo = TRUE, message = FALSE}
 
