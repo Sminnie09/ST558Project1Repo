@@ -7,7 +7,7 @@ output:
     toc: true
 ---
 
-Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a blog post linking to your vignette.All project work should be done in a github repo. 
+Project Objective: This project involves creating a vignette (an HTML file with a table of contents) about reading in data in JSON format and exploring it (summaries and graphs - more details on this later). You will then create a blog post linking to your vignette.All project work should be done in a github repo.
 
 # JSON Data
 
