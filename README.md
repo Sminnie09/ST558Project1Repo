@@ -522,7 +522,7 @@ SkatersTable("R")
 This section covers graphical summaries of the data pulled from the NHL
 Franchise API.
 
-## Barplot
+## Bar Plot
 
 This is a side-by-side bar plot of the count of inactive and active
 players for select franchises. For these select franchises, the New York
@@ -547,9 +547,9 @@ g + geom_bar(aes(fill = data.activePlayer), position = "dodge") + labs(x = "Fran
 
 ![](README_files/figure-gfm/Skater%20bar%20plot-1.png)<!-- -->
 
-## Boxplot
+## Box Plot
 
-This is a side-by-side boxplot of the losses for select franchises in
+This is a side-by-side box plot of the losses for select franchises in
 the goalie records. All of the franchises have around the same
 interquartile ranges and the New York Rangers have some outliers higher
 than the other franchises.
@@ -558,7 +558,7 @@ than the other franchises.
 #create dataframe of select franchises from goalie records
 GoalieRecords <- rbind(getGoalieRecords(5),getGoalieRecords(10), getGoalieRecords(20), getGoalieRecords(25), getGoalieRecords(15), getGoalieRecords(22))
 
-#create barplot
+#create bar plot
 g <- ggplot(GoalieRecords, aes(x = data.franchiseName, y = data.losses))
 g + geom_boxplot() + theme(axis.text.x = element_text(size = 10, angle = 90)) + labs(x = "Franchise Name", y = "Losses", title = "Losses for Select Franchises")
 ```
